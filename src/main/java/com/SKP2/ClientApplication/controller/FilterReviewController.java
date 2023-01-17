@@ -7,7 +7,6 @@ import com.SKP2.ClientApplication.dto.ReviewListDto;
 import com.SKP2.ClientApplication.util.JTableImpl;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -16,52 +15,55 @@ import java.util.List;
 public class FilterReviewController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblFilter = new JLabel("Filter Parameters");
-        MainFrame.getInstance().getCurrentPanel().add(lblFilter);
+        lblFilter.setBounds(40, 40, 250, 30);
+        jDialog.add(lblFilter);
 
         JLabel lblCity = new JLabel("City");
-        MainFrame.getInstance().getCurrentPanel().add(lblCity);
+        lblCity.setBounds(40, 70, 250, 30);
+        jDialog.add(lblCity);
 
         JTextField tfCity = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfCity);
+        tfCity.setBounds(40, 100, 250, 30);
+        jDialog.add(tfCity);
 
         JLabel lblCompanyID = new JLabel("Company ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblCompanyID);
+        lblCompanyID.setBounds(40, 130, 250, 30);
+        jDialog.add(lblCompanyID);
 
         JTextField tfCompanyID = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfCompanyID);
+        tfCompanyID.setBounds(40, 160, 250, 30);
+        jDialog.add(tfCompanyID);
 
         JButton btnFilter = new JButton("Filter");
-        MainFrame.getInstance().getCurrentPanel().add(btnFilter);
+        btnFilter.setBounds(40, 190, 250, 30);
+        jDialog.add(btnFilter);
 
-        ReviewListDto list;
-        try {
-            ReviewFilterDto reviewFilterDto = new ReviewFilterDto(tfCity.getText(), Long.parseLong(tfCompanyID.getText()));
-            list = MainFrame.getInstance().getRentalService().filterReview(reviewFilterDto);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            throw new RuntimeException(ex);
-        }
-        List<ReviewDto> content = list.getContent();
-        Object[][] data = new Object[50][50];
-        int k = 0;
-        for (ReviewDto dto : content)
-            data[k++] = new Object[]{dto.getId(), dto.getCompanyId(), dto.getRate(), dto.getDesc()};
+        btnFilter.addActionListener(e1 -> {
+            ReviewListDto list;
+            try {
+                ReviewFilterDto reviewFilterDto = new ReviewFilterDto(tfCity.getText(), Long.parseLong(tfCompanyID.getText()));
+                list = MainFrame.getInstance().getRentalService().filterReview(reviewFilterDto);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                throw new RuntimeException(ex);
+            }
+            List<ReviewDto> content = list.getContent();
+            Object[][] data = new Object[50][50];
+            int k = 0;
+            for (ReviewDto dto : content)
+                data[k++] = new Object[]{dto.getId(), dto.getCompanyId(), dto.getRate(), dto.getDesc()};
+            String[] header = {"ID", "Company ID", "Rate", "Description"};
 
-        String[] header = {"ID", "Company ID", "Rate", "Description"};
-        JTableImpl table = new JTableImpl(header, data);
+            JTableImpl table = new JTableImpl(header, data);
+            table.setBounds(0, 220, 1024, 768);
 
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.add(table.getTableHeader(), BorderLayout.NORTH);
-        panel.add(table, BorderLayout.CENTER);
+            jDialog.add(new JScrollPane(table));
+        });
 
-        JButton btnBack = new JButton("Back");
-        btnBack.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-
-        MainFrame.getInstance().getCurrentPanel().add(panel);
-        MainFrame.getInstance().getCurrentPanel().add(btnBack);
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

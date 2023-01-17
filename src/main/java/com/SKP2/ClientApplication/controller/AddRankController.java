@@ -12,34 +12,44 @@ import java.io.IOException;
 public class AddRankController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblRankName = new JLabel("Rank Name:");
-        MainFrame.getInstance().getCurrentPanel().add(lblRankName);
+        lblRankName.setBounds(40, 40, 250, 30);
+        jDialog.add(lblRankName);
 
         JTextField tfRankName = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfRankName);
+        tfRankName.setBounds(40, 70, 250,30);
+        jDialog.add(tfRankName);
 
         JLabel lblMinTotalNumberOfRentCar = new JLabel("Minimum Total Number Of Rent Car:");
-        MainFrame.getInstance().getCurrentPanel().add(lblMinTotalNumberOfRentCar);
+        lblMinTotalNumberOfRentCar.setBounds(40, 100, 250,30);
+        jDialog.add(lblMinTotalNumberOfRentCar);
 
         JTextField tfMinTotalNumberOfRentCar = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfMinTotalNumberOfRentCar);
+        tfMinTotalNumberOfRentCar.setBounds(40, 130, 250,30);
+        jDialog.add(tfMinTotalNumberOfRentCar);
 
         JLabel lblMaxTotalNumberOfRentCar = new JLabel("Maximum Total Number Of Rent Car:");
-        MainFrame.getInstance().getCurrentPanel().add(lblMaxTotalNumberOfRentCar);
+        lblMaxTotalNumberOfRentCar.setBounds(40, 160, 250,30);
+        jDialog.add(lblMaxTotalNumberOfRentCar);
 
         JTextField tfMaxTotalNumberOfRentCar = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfMaxTotalNumberOfRentCar);
+        tfMaxTotalNumberOfRentCar.setBounds(40, 190, 250,30);
+        jDialog.add(tfMaxTotalNumberOfRentCar);
 
         JLabel lblDiscount = new JLabel("Discount:");
-        MainFrame.getInstance().getCurrentPanel().add(lblDiscount);
+        lblDiscount.setBounds(40, 220, 250,30);
+        jDialog.add(lblDiscount);
 
         JTextField tfDiscount = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfDiscount);
+        tfDiscount.setBounds(40, 250, 250,30);
+        jDialog.add(tfDiscount);
 
         JButton btnAdd = new JButton("Add Rank");
-        MainFrame.getInstance().getCurrentPanel().add(btnAdd);
+        btnAdd.setBounds(40, 280, 250,30);
+        jDialog.add(btnAdd);
         btnAdd.addActionListener(event -> {
             try {
                 RankDto rankDto = MainFrame.getInstance().getUserService().addRank(new RankCreateDto(tfRankName.getText(), Integer.parseInt(tfMinTotalNumberOfRentCar.getText()), Integer.parseInt(tfMaxTotalNumberOfRentCar.getText()), Integer.parseInt(tfDiscount.getText())));
@@ -51,10 +61,6 @@ public class AddRankController implements ActionListener {
             }
         });
 
-        JButton btnBack = new JButton("Back");
-        btnBack.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-        MainFrame.getInstance().getCurrentPanel().add(btnBack);
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

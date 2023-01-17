@@ -12,19 +12,24 @@ import java.io.IOException;
 public class RegisterNotifTypeController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblAdd = new JLabel("Add Notification Type");
-        MainFrame.getInstance().getCurrentPanel().add(lblAdd);
+        lblAdd.setBounds(40, 40, 250, 30);
+        jDialog.add(lblAdd);
 
         JLabel lblName = new JLabel("Notification Name");
-        MainFrame.getInstance().getCurrentPanel().add(lblName);
+        lblName.setBounds(40, 70, 250, 30);
+        jDialog.add(lblName);
 
         JTextField tfName = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfName);
+        tfName.setBounds(40, 100, 250, 30);
+        jDialog.add(tfName);
 
         JButton btnAdd = new JButton("Add");
-        MainFrame.getInstance().getCurrentPanel().add(btnAdd);
+        btnAdd.setBounds(40, 130, 250, 30);
+        jDialog.add(btnAdd);
         btnAdd.addActionListener(event -> {
             try {
                 NotificationTypeCreateDto notificationTypeCreateDto = new NotificationTypeCreateDto(tfName.getText());
@@ -36,10 +41,6 @@ public class RegisterNotifTypeController implements ActionListener {
             }
         });
 
-        JButton btnCancel = new JButton("Cancel");
-        MainFrame.getInstance().getCurrentPanel().add(btnCancel);
-        btnCancel.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

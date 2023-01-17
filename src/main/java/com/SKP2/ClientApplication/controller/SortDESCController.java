@@ -15,7 +15,8 @@ import java.util.List;
 public class SortDESCController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
         CarListDto list;
         try {
             list = MainFrame.getInstance().getRentalService().sortDESC();
@@ -41,8 +42,8 @@ public class SortDESCController implements ActionListener {
         JButton btnBack = new JButton("Back");
         btnBack.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
 
-        MainFrame.getInstance().getCurrentPanel().add(panel);
-        MainFrame.getInstance().getCurrentPanel().add(btnBack);
-        MainFrame.getInstance().refresh();
+        jDialog.add(panel);
+        jDialog.add(btnBack);
+        jDialog.setVisible(true);
     }
 }

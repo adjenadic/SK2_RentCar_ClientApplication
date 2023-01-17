@@ -14,55 +14,72 @@ import java.util.Date;
 public class UpdateCarController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblUpdateCar = new JLabel("Update Car");
-        MainFrame.getInstance().getCurrentPanel().add(lblUpdateCar);
+        lblUpdateCar.setBounds(40, 40, 250, 30);
+        jDialog.add(lblUpdateCar);
 
         JLabel lblID = new JLabel("ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblID);
+        lblID.setBounds(40, 70, 250, 30);
+        jDialog.add(lblID);
 
         JTextField tfID = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfID);
+        tfID.setBounds(40, 100, 250, 30);
+        jDialog.add(tfID);
 
         JLabel lblModelName = new JLabel("Model name");
-        MainFrame.getInstance().getCurrentPanel().add(lblModelName);
+        lblModelName.setBounds(40, 130, 250, 30);
+        jDialog.add(lblModelName);
 
         JTextField tfModelName = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfModelName);
+        tfModelName.setBounds(40, 160, 250, 30);
+        jDialog.add(tfModelName);
 
         JLabel lblTypeName = new JLabel("Type name");
-        MainFrame.getInstance().getCurrentPanel().add(lblTypeName);
+        lblTypeName.setBounds(40, 190, 250, 30);
+        jDialog.add(lblTypeName);
 
         JTextField tfTypeName = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfTypeName);
+        tfTypeName.setBounds(40, 220, 250, 30);
+        jDialog.add(tfTypeName);
 
         JLabel lblCompanyName = new JLabel("Company name");
-        MainFrame.getInstance().getCurrentPanel().add(lblCompanyName);
+        lblCompanyName.setBounds(40, 250, 250, 30);
+        jDialog.add(lblCompanyName);
 
         JTextField tfCompanyName = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfCompanyName);
+        tfCompanyName.setBounds(40, 280, 250, 30);
+        jDialog.add(tfCompanyName);
 
         JLabel lblRentalDayPrice = new JLabel("Rental Day Price");
-        MainFrame.getInstance().getCurrentPanel().add(lblRentalDayPrice);
+        lblRentalDayPrice.setBounds(40, 310, 250, 30);
+        jDialog.add(lblRentalDayPrice);
 
         JTextField tfRentalDayPrice = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfRentalDayPrice);
+        tfRentalDayPrice.setBounds(40, 340, 250, 30);
+        jDialog.add(tfRentalDayPrice);
 
         JLabel lblStartDate = new JLabel("Start date");
-        MainFrame.getInstance().getCurrentPanel().add(lblStartDate);
+        lblStartDate.setBounds(40, 370, 250, 30);
+        jDialog.add(lblStartDate);
 
         JTextField tfStartDate = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfStartDate);
+        tfStartDate.setBounds(40, 400, 250, 30);
+        jDialog.add(tfStartDate);
 
         JLabel lblEndDate = new JLabel("End date");
-        MainFrame.getInstance().getCurrentPanel().add(lblEndDate);
+        lblEndDate.setBounds(40, 430, 250, 30);
+        jDialog.add(lblEndDate);
 
         JTextField tfEndDate = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfEndDate);
+        tfEndDate.setBounds(40, 460, 250, 30);
+        jDialog.add(tfEndDate);
 
         JButton btnUpdate = new JButton("Update");
-        MainFrame.getInstance().getCurrentPanel().add(btnUpdate);
+        btnUpdate.setBounds(40, 490, 250, 30);
+        jDialog.add(btnUpdate);
         btnUpdate.addActionListener(event -> {
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -81,10 +98,6 @@ public class UpdateCarController implements ActionListener {
             }
         });
 
-        JButton btnCancel = new JButton("Cancel");
-        MainFrame.getInstance().getCurrentPanel().add(btnCancel);
-        btnCancel.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

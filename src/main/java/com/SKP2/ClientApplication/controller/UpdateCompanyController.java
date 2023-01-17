@@ -11,43 +11,56 @@ import java.io.IOException;
 public class UpdateCompanyController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblUpdateCompany = new JLabel("Update Company");
-        MainFrame.getInstance().getCurrentPanel().add(lblUpdateCompany);
+        lblUpdateCompany.setBounds(40, 40, 250, 30);
+        jDialog.add(lblUpdateCompany);
 
         JLabel lblID = new JLabel("ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblID);
+        lblID.setBounds(40, 70, 250, 30);
+        jDialog.add(lblID);
 
         JTextField tfID = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfID);
+        tfID.setBounds(40, 100, 250, 30);
+        jDialog.add(tfID);
 
         JLabel lblCompanyName = new JLabel("Company Name");
-        MainFrame.getInstance().getCurrentPanel().add(lblCompanyName);
+        lblCompanyName.setBounds(40, 130, 250, 30);
+        jDialog.add(lblCompanyName);
 
         JTextField tfCompanyName = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfCompanyName);
+        tfCompanyName.setBounds(40, 160, 250, 30);
+        jDialog.add(tfCompanyName);
 
         JLabel lblDescription = new JLabel("Description");
-        MainFrame.getInstance().getCurrentPanel().add(lblDescription);
+        lblDescription.setBounds(40, 190, 250, 30);
+        jDialog.add(lblDescription);
 
         JTextField tfDescription = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfDescription);
+        tfDescription.setBounds(40, 220, 250, 30);
+        jDialog.add(tfDescription);
 
         JLabel lblNumOfCars = new JLabel("Num of Cars");
-        MainFrame.getInstance().getCurrentPanel().add(lblNumOfCars);
+        lblNumOfCars.setBounds(40, 250, 250, 30);
+        jDialog.add(lblNumOfCars);
 
         JTextField tfNumOfCars = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfNumOfCars);
+        tfNumOfCars.setBounds(40, 280, 250, 30);
+        jDialog.add(tfNumOfCars);
 
         JLabel lblCity = new JLabel("City");
-        MainFrame.getInstance().getCurrentPanel().add(lblCity);
+        lblCity.setBounds(40, 310, 250, 30);
+        jDialog.add(lblCity);
 
         JTextField tfCity = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfCity);
+        tfCity.setBounds(40, 340, 250, 30);
+        jDialog.add(tfCity);
 
         JButton btnUpdate = new JButton("Update");
-        MainFrame.getInstance().getCurrentPanel().add(btnUpdate);
+        btnUpdate.setBounds(40, 370, 250, 30);
+        jDialog.add(btnUpdate);
         btnUpdate.addActionListener(event -> {
             try {
                 CompanyDto cDto = MainFrame.getInstance().getRentalService().getCompanyById(Long.parseLong(tfID.getText()));
@@ -61,10 +74,6 @@ public class UpdateCompanyController implements ActionListener {
             }
         });
 
-        JButton btnCancel = new JButton("Cancel");
-        MainFrame.getInstance().getCurrentPanel().add(btnCancel);
-        btnCancel.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

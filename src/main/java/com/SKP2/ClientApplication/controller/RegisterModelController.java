@@ -12,19 +12,24 @@ import java.io.IOException;
 public class RegisterModelController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
-        JLabel lblRegisterCompany = new JLabel("Register Model");
-        MainFrame.getInstance().getCurrentPanel().add(lblRegisterCompany);
+        JLabel lblRegisterModel = new JLabel("Register Model");
+        lblRegisterModel.setBounds(40, 40, 250, 30);
+        jDialog.add(lblRegisterModel);
 
         JLabel lblModelName = new JLabel("Model Name");
-        MainFrame.getInstance().getCurrentPanel().add(lblModelName);
+        lblModelName.setBounds(40, 70, 250, 30);
+        jDialog.add(lblModelName);
 
         JTextField tfModelName = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfModelName);
+        tfModelName.setBounds(40, 100, 250, 30);
+        jDialog.add(tfModelName);
 
         JButton btnRegister = new JButton("Register");
-        MainFrame.getInstance().getCurrentPanel().add(btnRegister);
+        btnRegister.setBounds(40, 130, 250, 30);
+        jDialog.add(btnRegister);
         btnRegister.addActionListener(event -> {
             try {
                 ModelCreateDto modelCreateDto = new ModelCreateDto(tfModelName.getText());
@@ -36,10 +41,6 @@ public class RegisterModelController implements ActionListener {
             }
         });
 
-        JButton btnCancel = new JButton("Cancel");
-        MainFrame.getInstance().getCurrentPanel().add(btnCancel);
-        btnCancel.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

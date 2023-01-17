@@ -6,7 +6,10 @@ import javax.swing.*;
 
 public class AdminPanel extends JPanel {
     public AdminPanel() {
+        setLayout(null);
+
         JMenuBar menuBar = new JMenuBar();
+        menuBar.setBounds(0, 0, 1024, 30);
         add(menuBar);
 
         // User Service
@@ -252,13 +255,5 @@ public class AdminPanel extends JPanel {
         JMenuItem updateNotif = new JMenuItem("Update Notification Type");
         notificationService.add(updateNotif);
         updateNotif.addActionListener(new UpdateNotifTypeController());
-
-        // Account Settings
-        JMenu accountSettings = new JMenu("Account Settings");
-        menuBar.add(accountSettings);
-
-        JMenuItem logout = new JMenuItem("Logout");
-        accountSettings.add(logout);
-        logout.addActionListener(new LogoutController());
     }
 }

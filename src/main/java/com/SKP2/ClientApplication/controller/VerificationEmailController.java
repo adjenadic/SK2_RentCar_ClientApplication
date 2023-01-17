@@ -10,19 +10,24 @@ import java.io.IOException;
 public class VerificationEmailController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblVerify = new JLabel("Verify Email");
-        MainFrame.getInstance().getCurrentPanel().add(lblVerify);
+        lblVerify.setBounds(40, 40, 250, 30);
+        jDialog.add(lblVerify);
 
         JLabel lblVerification = new JLabel("Verification Text");
-        MainFrame.getInstance().getCurrentPanel().add(lblVerification);
+        lblVerification.setBounds(40, 70, 250, 30);
+        jDialog.add(lblVerification);
 
         JTextField tfVerification = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfVerification);
+        tfVerification.setBounds(40, 100, 250, 30);
+        jDialog.add(tfVerification);
 
         JButton btnVerify = new JButton("Verify");
-        MainFrame.getInstance().getCurrentPanel().add(btnVerify);
+        btnVerify.setBounds(40, 130, 250, 30);
+        jDialog.add(btnVerify);
         btnVerify.addActionListener(event -> {
             try {
                 if (MainFrame.getInstance().getUserService().verificationEmail(tfVerification.getText())) {
@@ -36,10 +41,6 @@ public class VerificationEmailController implements ActionListener {
             }
         });
 
-        JButton btnBack = new JButton("Back");
-        btnBack.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-        MainFrame.getInstance().getCurrentPanel().add(btnBack);
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

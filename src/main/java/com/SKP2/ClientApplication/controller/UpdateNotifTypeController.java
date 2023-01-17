@@ -11,25 +11,32 @@ import java.io.IOException;
 public class UpdateNotifTypeController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblUpdate = new JLabel("Update Notification Type");
-        MainFrame.getInstance().getCurrentPanel().add(lblUpdate);
+        lblUpdate.setBounds(40, 40, 250, 30);
+        jDialog.add(lblUpdate);
 
         JLabel lblID = new JLabel("ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblID);
+        lblID.setBounds(40, 70, 250, 30);
+        jDialog.add(lblID);
 
         JTextField tfID = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfID);
+        tfID.setBounds(40, 100, 250, 30);
+        jDialog.add(tfID);
 
         JLabel lblName = new JLabel("Name");
-        MainFrame.getInstance().getCurrentPanel().add(lblName);
+        lblName.setBounds(40, 130, 250, 30);
+        jDialog.add(lblName);
 
         JTextField tfName = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfName);
+        tfName.setBounds(40, 160, 250, 30);
+        jDialog.add(tfName);
 
         JButton btnUpdate = new JButton("Update");
-        MainFrame.getInstance().getCurrentPanel().add(btnUpdate);
+        btnUpdate.setBounds(40, 190, 250, 30);
+        jDialog.add(btnUpdate);
         btnUpdate.addActionListener(event -> {
             try {
                 NotificationTypeDto notificationTypeDto = new NotificationTypeDto(Long.parseLong(tfID.getText()), tfName.getText());
@@ -41,10 +48,6 @@ public class UpdateNotifTypeController implements ActionListener {
             }
         });
 
-        JButton btnCancel = new JButton("Cancel");
-        MainFrame.getInstance().getCurrentPanel().add(btnCancel);
-        btnCancel.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

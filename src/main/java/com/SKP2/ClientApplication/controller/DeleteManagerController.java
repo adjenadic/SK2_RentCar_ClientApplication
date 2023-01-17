@@ -10,19 +10,24 @@ import java.io.IOException;
 public class DeleteManagerController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblDeleteID = new JLabel("Delete ID:");
-        MainFrame.getInstance().getCurrentPanel().add(lblDeleteID);
+        lblDeleteID.setBounds(40, 40, 250, 30);
+        jDialog.add(lblDeleteID);
 
         JLabel lblID = new JLabel("Manager ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblID);
+        lblID.setBounds(40, 70, 250, 30);
+        jDialog.add(lblID);
 
         JTextField tfID = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfID);
+        tfID.setBounds(40, 100, 250, 30);
+        jDialog.add(tfID);
 
         JButton btnDelete = new JButton("Delete");
-        MainFrame.getInstance().getCurrentPanel().add(btnDelete);
+        btnDelete.setBounds(40, 130, 250, 30);
+        jDialog.add(btnDelete);
         btnDelete.addActionListener(event -> {
             try {
                 if (MainFrame.getInstance().getUserService().deleteManager(Long.parseLong(tfID.getText()))) {
@@ -36,10 +41,6 @@ public class DeleteManagerController implements ActionListener {
             }
         });
 
-        JButton btnBack = new JButton("Back");
-        btnBack.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-        MainFrame.getInstance().getCurrentPanel().add(btnBack);
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

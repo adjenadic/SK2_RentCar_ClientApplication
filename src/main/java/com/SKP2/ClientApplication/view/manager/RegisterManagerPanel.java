@@ -5,7 +5,6 @@ import com.SKP2.ClientApplication.dto.ManagerCreateDto;
 import com.SKP2.ClientApplication.dto.ManagerDto;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,37 +12,60 @@ import java.util.Date;
 
 public class RegisterManagerPanel extends JPanel {
     public RegisterManagerPanel() {
-        setLayout(new GridLayout(10, 1));
+        setLayout(null);
 
         JLabel lblUsername = new JLabel("Username:");
-        lblUsername.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        lblUsername.setBounds(40, 40, 250, 30);
         JTextField tfUsername = new JTextField();
+        tfUsername.setBounds(40, 70, 250, 30);
+
         JLabel lblPassword = new JLabel("Password:");
-        lblPassword.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        lblPassword.setBounds(40, 100, 250, 30);
         JTextField tfPassword = new JTextField();
+        tfPassword.setBounds(40, 130, 250, 30);
+
         JLabel lblEmail = new JLabel("Email:");
-        lblEmail.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        lblEmail.setBounds(40, 160, 250, 30);
         JTextField tfEmail = new JTextField();
+        tfEmail.setBounds(40, 190, 250, 30);
+
         JLabel lblPhone = new JLabel("Phone:");
-        lblPhone.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        lblPhone.setBounds(40, 220, 250, 30);
         JTextField tfPhone = new JTextField();
+        tfPhone.setBounds(40, 250, 250, 30);
+
         JLabel lblDayOfBirth = new JLabel("Day of Birth:");
-        lblDayOfBirth.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        lblDayOfBirth.setBounds(40, 280, 250, 30);
+
         JTextField tfDayOfBirth = new JTextField();
+        tfDayOfBirth.setBounds(40, 310, 250, 30);
+
         JLabel lblFirstName = new JLabel("First Name:");
-        lblFirstName.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        lblFirstName.setBounds(40, 340, 250, 30);
+
         JTextField tfFirstName = new JTextField();
+        tfFirstName.setBounds(40, 370, 250, 30);
+
         JLabel lblLastName = new JLabel("Last Name:");
-        lblLastName.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        lblLastName.setBounds(40, 400, 250, 30);
+
         JTextField tfLastName = new JTextField();
+        tfLastName.setBounds(40, 430, 250, 30);
+
         JLabel lblCompanyName = new JLabel("Company Name:");
-        lblCompanyName.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        lblCompanyName.setBounds(40, 460, 250, 30);
+
         JTextField tfCompanyName = new JTextField();
+        tfCompanyName.setBounds(40, 490, 250, 30);
+
         JLabel lblEmploymentDay = new JLabel("Employment Day:");
-        lblEmploymentDay.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        lblEmploymentDay.setBounds(40, 520, 250, 30);
+
         JTextField tfEmploymentDay = new JTextField();
+        tfEmploymentDay.setBounds(40, 550, 250, 30);
 
         JButton btnRegisterManager = new JButton("Register Manager");
+        btnRegisterManager.setBounds(40, 580, 250, 30);
         btnRegisterManager.addActionListener(e -> {
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -62,6 +84,7 @@ public class RegisterManagerPanel extends JPanel {
             }
         });
         JButton btnBack = new JButton("Back");
+        btnBack.setBounds(40, 610, 250, 30);
         btnBack.addActionListener(e -> MainFrame.getInstance().showLoginPanel());
 
         add(lblUsername);

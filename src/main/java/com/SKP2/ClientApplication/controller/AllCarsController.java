@@ -6,7 +6,6 @@ import com.SKP2.ClientApplication.dto.CarListDto;
 import com.SKP2.ClientApplication.util.JTableImpl;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -15,7 +14,9 @@ import java.util.List;
 public class AllCarsController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
+
         CarListDto list;
         try {
             list = MainFrame.getInstance().getRentalService().getAllCars();
@@ -29,20 +30,13 @@ public class AllCarsController implements ActionListener {
         for (CarDto dto : content)
             data[k++] = new Object[]{dto.getId(), dto.getModelName(), dto.getTypeName(), dto.getCompanyName(),
                     dto.getRentalDayPrice(), dto.isReserved(), dto.getStartDate(), dto.getEndDate()};
-
         String[] header = {"ID", "Model Name", "Type Name", "Company Name", "Rental Day Price", "Reserved Status",
                 "Start Date", "End Date"};
+
         JTableImpl table = new JTableImpl(header, data);
+        table.setBounds(0, 0, 1024, 768);
 
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.add(table.getTableHeader(), BorderLayout.NORTH);
-        panel.add(table, BorderLayout.CENTER);
-
-        JButton btnBack = new JButton("Back");
-        btnBack.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-
-        MainFrame.getInstance().getCurrentPanel().add(panel);
-        MainFrame.getInstance().getCurrentPanel().add(btnBack);
-        MainFrame.getInstance().refresh();
+        jDialog.add(new JScrollPane(table));
+        jDialog.setVisible(true);
     }
 }

@@ -11,19 +11,24 @@ import java.io.IOException;
 public class ModelByIdController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblGet = new JLabel("Get Model By ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblGet);
+        lblGet.setBounds(40, 40, 250, 30);
+        jDialog.add(lblGet);
 
         JLabel lblModelID = new JLabel("Model ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblModelID);
+        lblModelID.setBounds(40, 70, 250, 30);
+        jDialog.add(lblModelID);
 
         JTextField tfModelID = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfModelID);
+        tfModelID.setBounds(40, 100, 250, 30);
+        jDialog.add(tfModelID);
 
         JButton btnGet = new JButton("Get");
-        MainFrame.getInstance().getCurrentPanel().add(btnGet);
+        btnGet.setBounds(40, 130, 250, 30);
+        jDialog.add(btnGet);
         btnGet.addActionListener(event -> {
             try {
                 ModelDto modelDto = MainFrame.getInstance().getRentalService().getModelById(Long.parseLong(tfModelID.getText()));
@@ -34,10 +39,6 @@ public class ModelByIdController implements ActionListener {
             }
         });
 
-        JButton btnBack = new JButton("Back");
-        btnBack.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-        MainFrame.getInstance().getCurrentPanel().add(btnBack);
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

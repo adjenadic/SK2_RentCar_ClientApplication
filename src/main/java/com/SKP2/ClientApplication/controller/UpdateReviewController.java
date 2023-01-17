@@ -11,37 +11,48 @@ import java.io.IOException;
 public class UpdateReviewController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblUpdateCar = new JLabel("Update Review");
-        MainFrame.getInstance().getCurrentPanel().add(lblUpdateCar);
+        lblUpdateCar.setBounds(40, 40, 250, 30);
+        jDialog.add(lblUpdateCar);
 
         JLabel lblID = new JLabel("ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblID);
+        lblID.setBounds(40, 70, 250, 30);
+        jDialog.add(lblID);
 
         JTextField tfID = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfID);
+        tfID.setBounds(40, 100, 250, 30);
+        jDialog.add(tfID);
 
         JLabel lblCompanyID = new JLabel("Company ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblCompanyID);
+        lblCompanyID.setBounds(40, 130, 250, 30);
+        jDialog.add(lblCompanyID);
 
         JTextField tfCompanyID = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfCompanyID);
+        tfCompanyID.setBounds(40, 160, 250, 30);
+        jDialog.add(tfCompanyID);
 
         JLabel lblRate = new JLabel("Rate");
-        MainFrame.getInstance().getCurrentPanel().add(lblRate);
+        lblRate.setBounds(40, 190, 250, 30);
+        jDialog.add(lblRate);
 
         JTextField tfRate = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfRate);
+        tfRate.setBounds(40, 220, 250, 30);
+        jDialog.add(tfRate);
 
         JLabel lblDesc = new JLabel("Description");
-        MainFrame.getInstance().getCurrentPanel().add(lblDesc);
+        lblDesc.setBounds(40, 250, 250, 30);
+        jDialog.add(lblDesc);
 
         JTextField tfDesc = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfDesc);
+        tfDesc.setBounds(40, 280, 250, 30);
+        jDialog.add(tfDesc);
 
         JButton btnUpdate = new JButton("Update");
-        MainFrame.getInstance().getCurrentPanel().add(btnUpdate);
+        btnUpdate.setBounds(40, 310, 250, 30);
+        jDialog.add(btnUpdate);
         btnUpdate.addActionListener(event -> {
             try {
                 ReviewDto reviewDto = new ReviewDto(Long.parseLong(tfID.getText()), Long.parseLong(tfCompanyID.getText()), Integer.parseInt(tfRate.getText()), tfDesc.getText());
@@ -53,10 +64,6 @@ public class UpdateReviewController implements ActionListener {
             }
         });
 
-        JButton btnCancel = new JButton("Cancel");
-        MainFrame.getInstance().getCurrentPanel().add(btnCancel);
-        btnCancel.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

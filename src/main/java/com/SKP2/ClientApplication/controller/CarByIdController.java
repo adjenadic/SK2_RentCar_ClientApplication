@@ -11,19 +11,24 @@ import java.io.IOException;
 public class CarByIdController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblGet = new JLabel("Get Car By ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblGet);
+        lblGet.setBounds(40, 40, 250, 30);
+        jDialog.add(lblGet);
 
         JLabel lblCarID = new JLabel("Car ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblCarID);
+        lblCarID.setBounds(40, 70, 250, 30);
+        jDialog.add(lblCarID);
 
         JTextField tfCarID = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfCarID);
+        tfCarID.setBounds(40, 100, 250, 30);
+        jDialog.add(tfCarID);
 
         JButton btnGet = new JButton("Get");
-        MainFrame.getInstance().getCurrentPanel().add(btnGet);
+        btnGet.setBounds(40, 130, 250, 30);
+        jDialog.add(btnGet);
         btnGet.addActionListener(event -> {
             try {
                 CarDto carDto = MainFrame.getInstance().getRentalService().getCarById(Long.parseLong(tfCarID.getText()));
@@ -36,10 +41,6 @@ public class CarByIdController implements ActionListener {
             }
         });
 
-        JButton btnBack = new JButton("Back");
-        btnBack.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-        MainFrame.getInstance().getCurrentPanel().add(btnBack);
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

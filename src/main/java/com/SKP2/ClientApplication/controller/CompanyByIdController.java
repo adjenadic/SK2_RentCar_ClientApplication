@@ -11,19 +11,24 @@ import java.io.IOException;
 public class CompanyByIdController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblGet = new JLabel("Get Company By ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblGet);
+        lblGet.setBounds(40, 40, 250, 30);
+        jDialog.add(lblGet);
 
         JLabel lblCompanyID = new JLabel("Company ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblCompanyID);
+        lblCompanyID.setBounds(40, 70, 250, 30);
+        jDialog.add(lblCompanyID);
 
         JTextField tfCompanyID = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfCompanyID);
+        tfCompanyID.setBounds(40, 100, 250, 30);
+        jDialog.add(tfCompanyID);
 
         JButton btnGet = new JButton("Get");
-        MainFrame.getInstance().getCurrentPanel().add(btnGet);
+        btnGet.setBounds(40, 130, 250, 30);
+        jDialog.add(btnGet);
         btnGet.addActionListener(event -> {
             try {
                 CompanyDto companyDto = MainFrame.getInstance().getRentalService().getCompanyById(Long.parseLong(tfCompanyID.getText()));
@@ -35,10 +40,6 @@ public class CompanyByIdController implements ActionListener {
             }
         });
 
-        JButton btnBack = new JButton("Back");
-        btnBack.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-        MainFrame.getInstance().getCurrentPanel().add(btnBack);
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

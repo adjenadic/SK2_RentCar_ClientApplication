@@ -15,31 +15,40 @@ import java.util.Date;
 public class AddReservationController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblAdd = new JLabel("Add Reservation");
-        MainFrame.getInstance().getCurrentPanel().add(lblAdd);
+        lblAdd.setBounds(40, 40, 250, 30);
+        jDialog.add(lblAdd);
 
         JLabel lblCarID = new JLabel("Car ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblCarID);
+        lblCarID.setBounds(40, 70, 250, 30);
+        jDialog.add(lblCarID);
 
         JTextField tfCarID = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfCarID);
+        tfCarID.setBounds(40, 100, 250, 30);
+        jDialog.add(tfCarID);
 
         JLabel lblStartDate = new JLabel("Start date");
-        MainFrame.getInstance().getCurrentPanel().add(lblStartDate);
+        lblStartDate.setBounds(40, 130, 250, 30);
+        jDialog.add(lblStartDate);
 
         JTextField tfStartDate = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfStartDate);
+        tfStartDate.setBounds(40, 160, 250, 30);
+        jDialog.add(tfStartDate);
 
         JLabel lblEndDate = new JLabel("End date");
-        MainFrame.getInstance().getCurrentPanel().add(lblEndDate);
+        lblEndDate.setBounds(40, 190, 250, 30);
+        jDialog.add(lblEndDate);
 
         JTextField tfEndDate = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfEndDate);
+        tfEndDate.setBounds(40, 220, 250, 30);
+        jDialog.add(tfEndDate);
 
         JButton btnAdd = new JButton("Add");
-        MainFrame.getInstance().getCurrentPanel().add(btnAdd);
+        btnAdd.setBounds(40, 250, 250, 30);
+        jDialog.add(btnAdd);
         btnAdd.addActionListener(event -> {
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -56,10 +65,6 @@ public class AddReservationController implements ActionListener {
             }
         });
 
-        JButton btnCancel = new JButton("Cancel");
-        MainFrame.getInstance().getCurrentPanel().add(btnCancel);
-        btnCancel.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

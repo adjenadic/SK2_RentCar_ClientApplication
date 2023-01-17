@@ -7,7 +7,6 @@ import com.SKP2.ClientApplication.dto.FilterEmailDto;
 import com.SKP2.ClientApplication.util.JTableImpl;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -19,70 +18,76 @@ import java.util.List;
 public class FilterEmailsController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblFilter = new JLabel("Filter Parameters");
-        MainFrame.getInstance().getCurrentPanel().add(lblFilter);
+        lblFilter.setBounds(40, 40, 250, 30);
+        jDialog.add(lblFilter);
 
         JLabel lblEmail = new JLabel("Email");
-        MainFrame.getInstance().getCurrentPanel().add(lblEmail);
+        lblEmail.setBounds(40, 70, 250, 30);
+        jDialog.add(lblEmail);
 
         JTextField tfEmail = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfEmail);
+        tfEmail.setBounds(40, 100, 250, 30);
+        jDialog.add(tfEmail);
 
         JLabel lblSubject = new JLabel("Subject");
-        MainFrame.getInstance().getCurrentPanel().add(lblSubject);
+        lblSubject.setBounds(40, 130, 250, 30);
+        jDialog.add(lblSubject);
 
         JTextField tfSubject = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfSubject);
+        tfSubject.setBounds(40, 130, 250, 30);
+        jDialog.add(tfSubject);
 
         JLabel lblStartDate = new JLabel("Start date");
-        MainFrame.getInstance().getCurrentPanel().add(lblStartDate);
+        lblStartDate.setBounds(40, 130, 250, 30);
+        jDialog.add(lblStartDate);
 
         JTextField tfStartDate = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfStartDate);
+        tfStartDate.setBounds(40, 160, 250, 30);
+        jDialog.add(tfStartDate);
 
         JLabel lblEndDate = new JLabel("End date");
-        MainFrame.getInstance().getCurrentPanel().add(lblEndDate);
+        lblEndDate.setBounds(40, 190, 250, 30);
+        jDialog.add(lblEndDate);
 
         JTextField tfEndDate = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfEndDate);
+        tfEmail.setBounds(40, 220, 250, 30);
+        jDialog.add(tfEndDate);
 
         JButton btnFilter = new JButton("Filter");
-        MainFrame.getInstance().getCurrentPanel().add(btnFilter);
+        btnFilter.setBounds(40, 250, 250, 30);
+        jDialog.add(btnFilter);
+        btnFilter.addActionListener(e1 -> {
+            EmailListDto list;
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date startDate = sdf.parse(tfStartDate.getText());
+                java.sql.Date startDateToSqlDate = new java.sql.Date(startDate.getTime());
+                Date endDate = sdf.parse(tfEndDate.getText());
+                java.sql.Date endDateToSqlDate = new java.sql.Date(endDate.getTime());
+                FilterEmailDto filterEmailDto = new FilterEmailDto(tfEmail.getText(), tfSubject.getText(), startDateToSqlDate, endDateToSqlDate);
+                list = MainFrame.getInstance().getNotificationService().getFilterEmails(filterEmailDto);
+            } catch (IOException | ParseException ex) {
+                ex.printStackTrace();
+                throw new RuntimeException(ex);
+            }
+            List<EmailDto> content = list.getContent();
+            Object[][] data = new Object[50][50];
+            int k = 0;
+            for (EmailDto dto : content)
+                data[k++] = new Object[]{dto.getSubject(), dto.getContext(), dto.getEmailFrom(), dto.getEmailTo(),
+                        dto.getDate()};
+            String[] header = {"Subject", "Context", "Email from", "Email to", "Date"};
 
-        EmailListDto list;
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date startDate = sdf.parse(tfStartDate.getText());
-            java.sql.Date startDateToSqlDate = new java.sql.Date(startDate.getTime());
-            Date endDate = sdf.parse(tfEndDate.getText());
-            java.sql.Date endDateToSqlDate = new java.sql.Date(endDate.getTime());
-            FilterEmailDto filterEmailDto = new FilterEmailDto(tfEmail.getText(), tfSubject.getText(), startDateToSqlDate, endDateToSqlDate);
-            list = MainFrame.getInstance().getNotificationService().getFilterEmails(filterEmailDto);
-        } catch (IOException | ParseException ex) {
-            ex.printStackTrace();
-            throw new RuntimeException(ex);
-        }
-        List<EmailDto> content = list.getContent();
-        Object[][] data = new Object[50][50];
-        int k = 0;
-        for (EmailDto dto : content)
-            data[k++] = new Object[]{dto.getSubject(), dto.getContext(), dto.getEmailFrom(), dto.getEmailTo(),
-                    dto.getDate()};
+            JTableImpl table = new JTableImpl(header, data);
+            table.setBounds(0, 280, 1024, 768);
 
-        String[] header = {"Subject", "Context", "Email from", "Email to", "Date"};
-        JTableImpl table = new JTableImpl(header, data);
+            jDialog.add(new JScrollPane(table));
+        });
 
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.add(table.getTableHeader(), BorderLayout.NORTH);
-        panel.add(table, BorderLayout.CENTER);
-
-        JButton btnBack = new JButton("Back");
-        btnBack.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-
-        MainFrame.getInstance().getCurrentPanel().add(panel);
-        MainFrame.getInstance().getCurrentPanel().add(btnBack);
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

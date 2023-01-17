@@ -14,61 +14,80 @@ import java.util.Date;
 public class UpdateAdminController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblUpdateAdmin = new JLabel("Update Admin");
-        MainFrame.getInstance().getCurrentPanel().add(lblUpdateAdmin);
+        lblUpdateAdmin.setBounds(40, 40, 250, 30);
+        jDialog.add(lblUpdateAdmin);
 
         JLabel lblID = new JLabel("ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblID);
+        lblID.setBounds(40, 70, 250, 30);
+        jDialog.add(lblID);
 
         JTextField tfID = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfID);
+        tfID.setBounds(40, 100, 250, 30);
+        jDialog.add(tfID);
 
         JLabel lblUsername = new JLabel("Username");
-        MainFrame.getInstance().getCurrentPanel().add(lblUsername);
+        lblUsername.setBounds(40, 130, 250, 30);
+        jDialog.add(lblUsername);
 
         JTextField tfUsername = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfUsername);
+        tfUsername.setBounds(40, 160, 250, 30);
+        jDialog.add(tfUsername);
 
         JLabel lblPassword = new JLabel("Password");
-        MainFrame.getInstance().getCurrentPanel().add(lblPassword);
+        lblPassword.setBounds(40, 190, 250, 30);
+        jDialog.add(lblPassword);
 
         JTextField tfPassword = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfPassword);
+        tfPassword.setBounds(40, 220, 250, 30);
+        jDialog.add(tfPassword);
 
         JLabel lblEmail = new JLabel("Email");
-        MainFrame.getInstance().getCurrentPanel().add(lblEmail);
+        lblEmail.setBounds(40, 250, 250, 30);
+        jDialog.add(lblEmail);
 
         JTextField tfEmail = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfEmail);
+        tfEmail.setBounds(40, 280, 250, 30);
+        jDialog.add(tfEmail);
 
         JLabel lblPhone = new JLabel("Phone");
-        MainFrame.getInstance().getCurrentPanel().add(lblPhone);
+        lblPhone.setBounds(40, 310, 250, 30);
+        jDialog.add(lblPhone);
 
         JTextField tfPhone = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfPhone);
+        tfPhone.setBounds(40, 340, 250, 30);
+        jDialog.add(tfPhone);
 
         JLabel lblDayOfBirth = new JLabel("Date of Birth");
-        MainFrame.getInstance().getCurrentPanel().add(lblDayOfBirth);
+        lblDayOfBirth.setBounds(40, 370, 250, 30);
+        jDialog.add(lblDayOfBirth);
 
         JTextField tfDayOfBirth = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfDayOfBirth);
+        tfDayOfBirth.setBounds(40, 400, 250, 30);
+        jDialog.add(tfDayOfBirth);
 
         JLabel lblFirstname = new JLabel("First name");
-        MainFrame.getInstance().getCurrentPanel().add(lblFirstname);
+        lblFirstname.setBounds(40, 430, 250, 30);
+        jDialog.add(lblFirstname);
 
         JTextField tfFirstname = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfFirstname);
+        tfFirstname.setBounds(40, 460, 250, 30);
+        jDialog.add(tfFirstname);
 
         JLabel lblLastname = new JLabel("Last name");
-        MainFrame.getInstance().getCurrentPanel().add(lblLastname);
+        lblLastname.setBounds(40, 490, 250, 30);
+        jDialog.add(lblLastname);
 
         JTextField tfLastname = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfLastname);
+        tfLastname.setBounds(40, 520, 250, 30);
+        jDialog.add(tfLastname);
 
         JButton btnUpdate = new JButton("Update");
-        MainFrame.getInstance().getCurrentPanel().add(btnUpdate);
+        btnUpdate.setBounds(40, 550, 250, 30);
+        jDialog.add(btnUpdate);
         btnUpdate.addActionListener(event -> {
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -85,10 +104,6 @@ public class UpdateAdminController implements ActionListener {
             }
         });
 
-        JButton btnCancel = new JButton("Cancel");
-        MainFrame.getInstance().getCurrentPanel().add(btnCancel);
-        btnCancel.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

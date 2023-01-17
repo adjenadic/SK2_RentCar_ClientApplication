@@ -12,19 +12,24 @@ import java.io.IOException;
 public class RegisterTypeController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblRegisterType = new JLabel("Register Type");
-        MainFrame.getInstance().getCurrentPanel().add(lblRegisterType);
+        lblRegisterType.setBounds(40, 40, 250, 30);
+        jDialog.add(lblRegisterType);
 
         JLabel lblTypeName = new JLabel("Type Name");
-        MainFrame.getInstance().getCurrentPanel().add(lblTypeName);
+        lblTypeName.setBounds(40, 70, 250, 30);
+        jDialog.add(lblTypeName);
 
         JTextField tfTypeName = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfTypeName);
+        tfTypeName.setBounds(40, 100, 250, 30);
+        jDialog.add(tfTypeName);
 
         JButton btnRegister = new JButton("Register");
-        MainFrame.getInstance().getCurrentPanel().add(btnRegister);
+        btnRegister.setBounds(40, 130, 250, 30);
+        jDialog.add(btnRegister);
         btnRegister.addActionListener(event -> {
             try {
                 TypeCreateDto typeCreateDto = new TypeCreateDto(tfTypeName.getText());
@@ -36,10 +41,6 @@ public class RegisterTypeController implements ActionListener {
             }
         });
 
-        JButton btnCancel = new JButton("Cancel");
-        MainFrame.getInstance().getCurrentPanel().add(btnCancel);
-        btnCancel.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

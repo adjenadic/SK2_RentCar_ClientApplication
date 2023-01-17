@@ -68,7 +68,7 @@ public class MainFrame extends JFrame {
         currentPanel = registerManagerPanel;
         this.getContentPane().setVisible(false);
         this.getContentPane().removeAll();
-        this.getContentPane().add(registerManagerPanel);
+        this.getContentPane().add(currentPanel);
         this.getContentPane().setVisible(true);
     }
 
@@ -76,7 +76,7 @@ public class MainFrame extends JFrame {
         currentPanel = registerClientPanel;
         this.getContentPane().setVisible(false);
         this.getContentPane().removeAll();
-        this.getContentPane().add(registerClientPanel);
+        this.getContentPane().add(currentPanel);
         this.getContentPane().setVisible(true);
     }
 
@@ -84,7 +84,7 @@ public class MainFrame extends JFrame {
         currentPanel = loginPanel;
         this.getContentPane().setVisible(false);
         this.getContentPane().removeAll();
-        this.getContentPane().add(loginPanel);
+        this.getContentPane().add(currentPanel);
         this.getContentPane().setVisible(true);
     }
 
@@ -92,7 +92,7 @@ public class MainFrame extends JFrame {
         currentPanel = adminPanel;
         this.getContentPane().setVisible(false);
         this.getContentPane().removeAll();
-        this.getContentPane().add(adminPanel);
+        this.getContentPane().add(currentPanel);
         this.getContentPane().setVisible(true);
     }
 
@@ -100,7 +100,7 @@ public class MainFrame extends JFrame {
         currentPanel = managerPanel;
         this.getContentPane().setVisible(false);
         this.getContentPane().removeAll();
-        this.getContentPane().add(managerPanel);
+        this.getContentPane().add(currentPanel);
         this.getContentPane().setVisible(true);
     }
 
@@ -108,7 +108,7 @@ public class MainFrame extends JFrame {
         currentPanel = clientPanel;
         this.getContentPane().setVisible(false);
         this.getContentPane().removeAll();
-        this.getContentPane().add(clientPanel);
+        this.getContentPane().add(currentPanel);
         this.getContentPane().setVisible(true);
     }
 

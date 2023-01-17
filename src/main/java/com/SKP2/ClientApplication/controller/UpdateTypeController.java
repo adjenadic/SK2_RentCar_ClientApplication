@@ -11,25 +11,32 @@ import java.io.IOException;
 public class UpdateTypeController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblUpdate = new JLabel("Update Type");
-        MainFrame.getInstance().getCurrentPanel().add(lblUpdate);
+        lblUpdate.setBounds(40, 40, 250, 30);
+        jDialog.add(lblUpdate);
 
         JLabel lblID = new JLabel("ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblID);
+        lblID.setBounds(40, 70, 250, 30);
+        jDialog.add(lblID);
 
         JTextField tfID = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfID);
+        tfID.setBounds(40, 100, 250, 30);
+        jDialog.add(tfID);
 
         JLabel lblTypeName = new JLabel("Type Name");
-        MainFrame.getInstance().getCurrentPanel().add(lblTypeName);
+        lblTypeName.setBounds(40, 130, 250, 30);
+        jDialog.add(lblTypeName);
 
         JTextField tfTypeName = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfTypeName);
+        tfTypeName.setBounds(40, 160, 250, 30);
+        jDialog.add(tfTypeName);
 
         JButton btnUpdate = new JButton("Update");
-        MainFrame.getInstance().getCurrentPanel().add(btnUpdate);
+        btnUpdate.setBounds(40, 190, 250, 30);
+        jDialog.add(btnUpdate);
         btnUpdate.addActionListener(event -> {
             try {
                 TypeDto typeDto = new TypeDto(Long.parseLong(tfID.getText()), tfTypeName.getText());
@@ -41,10 +48,6 @@ public class UpdateTypeController implements ActionListener {
             }
         });
 
-        JButton btnCancel = new JButton("Cancel");
-        MainFrame.getInstance().getCurrentPanel().add(btnCancel);
-        btnCancel.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

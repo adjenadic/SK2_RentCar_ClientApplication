@@ -96,9 +96,11 @@ public class UserService {
 
     public ClientDto registerClient(ClientCreateDto clientCreateDto) throws IOException {
         RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(clientCreateDto));
+        String token = MainFrame.getInstance().getToken();
 
         Request request = new Request.Builder()
                 .url(URL + "/users/client/registration")
+                .addHeader("authorization", "Bearer " + token)
                 .post(body)
                 .build();
         Call call = client.newCall(request);
@@ -211,9 +213,11 @@ public class UserService {
 
     public ManagerDto registerManager(ManagerCreateDto managerCreateDto) throws IOException {
         RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(managerCreateDto));
+        String token = MainFrame.getInstance().getToken();
 
         Request request = new Request.Builder()
                 .url(URL + "/users/manager/registration")
+                .addHeader("authorization", "Bearer " + token)
                 .post(body)
                 .build();
         Call call = client.newCall(request);

@@ -6,21 +6,26 @@ import com.SKP2.ClientApplication.dto.TokenResponseDto;
 import com.SKP2.ClientApplication.token.TokenDecoder;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 
 public class LoginPanel extends JPanel {
     public LoginPanel() {
-        setLayout(new GridLayout(4, 1));
+        setLayout(null);
 
         JLabel lblUsername = new JLabel("Username:");
-        lblUsername.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
-        JLabel lblPassword = new JLabel("Password:");
-        lblPassword.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        lblUsername.setBounds(40, 40, 250, 30);
+
         JTextField tfUsername = new JTextField();
+        tfUsername.setBounds(40, 70, 250, 30);
+
+        JLabel lblPassword = new JLabel("Password:");
+        lblPassword.setBounds(40, 100, 250, 30);
+
         JTextField tfPassword = new JTextField();
+        tfPassword.setBounds(40, 130, 250, 30);
 
         JButton btnLogin = new JButton("Login");
+        btnLogin.setBounds(40, 160, 250, 30);
         btnLogin.addActionListener(e -> {
             TokenRequestDto tokenRequestDto = new TokenRequestDto(tfUsername.getText(), tfPassword.getText());
             try {
@@ -49,9 +54,11 @@ public class LoginPanel extends JPanel {
         });
 
         JButton btnRegisterClient = new JButton("Register Client");
+        btnRegisterClient.setBounds(40, 190, 250, 30);
         btnRegisterClient.addActionListener(e -> MainFrame.getInstance().showRegisterClientPanel());
 
         JButton btnRegisterManager = new JButton("Register Manager");
+        btnRegisterManager.setBounds(40, 220, 250, 30);
         btnRegisterManager.addActionListener(e -> MainFrame.getInstance().showRegisterManagerPanel());
 
         add(lblUsername);

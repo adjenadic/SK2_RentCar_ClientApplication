@@ -11,33 +11,34 @@ import java.io.IOException;
 public class DiscountController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblGet = new JLabel("Get Discount By ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblGet);
+        lblGet.setBounds(40, 40, 250, 30);
+        jDialog.add(lblGet);
 
-        JLabel lblUserID = new JLabel("Discount ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblUserID);
+        JLabel lblID = new JLabel("Discount ID");
+        lblID.setBounds(40, 70, 250, 30);
+        jDialog.add(lblID);
 
-        JTextField tfDiscountID = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfDiscountID);
+        JTextField tfID = new JTextField();
+        tfID.setBounds(40, 100, 250, 30);
+        jDialog.add(tfID);
 
         JButton btnGet = new JButton("Get");
-        MainFrame.getInstance().getCurrentPanel().add(btnGet);
+        btnGet.setBounds(40, 130, 250, 30);
+        jDialog.add(btnGet);
         btnGet.addActionListener(event -> {
             try {
-                DiscountDto discountDto = MainFrame.getInstance().getUserService().getDiscount(Long.parseLong(tfDiscountID.getText()));
-                JOptionPane.showMessageDialog(null, "Discount: " + discountDto.getDiscount(), "Discount " + tfDiscountID.getText(), JOptionPane.INFORMATION_MESSAGE);
+                DiscountDto discountDto = MainFrame.getInstance().getUserService().getDiscount(Long.parseLong(tfID.getText()));
+                JOptionPane.showMessageDialog(null, "Discount: " + discountDto.getDiscount(), "Discount " + tfID.getText(), JOptionPane.INFORMATION_MESSAGE);
                 MainFrame.getInstance().clearContentPanelAndRefresh();
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "An error has occurred!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 
-        JButton btnBack = new JButton("Back");
-        btnBack.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-        MainFrame.getInstance().getCurrentPanel().add(btnBack);
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

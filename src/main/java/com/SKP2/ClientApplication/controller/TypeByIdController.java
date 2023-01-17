@@ -11,19 +11,24 @@ import java.io.IOException;
 public class TypeByIdController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblGet = new JLabel("Get Type By ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblGet);
+        lblGet.setBounds(40, 40, 250, 30);
+        jDialog.add(lblGet);
 
         JLabel lblTypeID = new JLabel("Type ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblTypeID);
+        lblTypeID.setBounds(40, 70, 250, 30);
+        jDialog.add(lblTypeID);
 
         JTextField tfTypeID = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfTypeID);
+        tfTypeID.setBounds(40, 100, 250, 30);
+        jDialog.add(tfTypeID);
 
         JButton btnGet = new JButton("Get");
-        MainFrame.getInstance().getCurrentPanel().add(btnGet);
+        btnGet.setBounds(40, 130, 250, 30);
+        jDialog.add(btnGet);
         btnGet.addActionListener(event -> {
             try {
                 TypeDto typeDto = MainFrame.getInstance().getRentalService().getTypeById(Long.parseLong(tfTypeID.getText()));
@@ -34,10 +39,6 @@ public class TypeByIdController implements ActionListener {
             }
         });
 
-        JButton btnBack = new JButton("Back");
-        btnBack.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-        MainFrame.getInstance().getCurrentPanel().add(btnBack);
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }

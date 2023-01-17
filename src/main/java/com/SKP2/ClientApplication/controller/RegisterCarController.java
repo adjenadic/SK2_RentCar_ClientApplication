@@ -12,37 +12,48 @@ import java.io.IOException;
 public class RegisterCarController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().clearContentPanel();
+        JDialog jDialog = new JDialog();
+        jDialog.setSize(1024, 768);
 
         JLabel lblRegisterCar = new JLabel("Register Car");
-        MainFrame.getInstance().getCurrentPanel().add(lblRegisterCar);
+        lblRegisterCar.setBounds(40, 40, 250, 30);
+        jDialog.add(lblRegisterCar);
 
         JLabel lblModelID = new JLabel("Model ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblModelID);
+        lblModelID.setBounds(40, 70, 250, 30);
+        jDialog.add(lblModelID);
 
         JTextField tfModelID = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfModelID);
+        tfModelID.setBounds(40, 100, 250, 30);
+        jDialog.add(tfModelID);
 
         JLabel lblTypeID = new JLabel("Type ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblTypeID);
+        lblTypeID.setBounds(40, 130, 250, 30);
+        jDialog.add(lblTypeID);
 
         JTextField tfTypeID = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfTypeID);
+        tfTypeID.setBounds(40, 160, 250, 30);
+        jDialog.add(tfTypeID);
 
         JLabel lblCompanyID = new JLabel("Company ID");
-        MainFrame.getInstance().getCurrentPanel().add(lblCompanyID);
+        lblCompanyID.setBounds(40, 190, 250, 30);
+        jDialog.add(lblCompanyID);
 
         JTextField tfCompanyID = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfCompanyID);
+        tfCompanyID.setBounds(40, 220, 250, 30);
+        jDialog.add(tfCompanyID);
 
         JLabel lblRentalDayPrice = new JLabel("Rental Day Price");
-        MainFrame.getInstance().getCurrentPanel().add(lblRentalDayPrice);
+        lblRentalDayPrice.setBounds(40, 250, 250, 30);
+        jDialog.add(lblRentalDayPrice);
 
         JTextField tfRentalDayPrice = new JTextField();
-        MainFrame.getInstance().getCurrentPanel().add(tfRentalDayPrice);
+        tfRentalDayPrice.setBounds(40, 280, 250, 30);
+        jDialog.add(tfRentalDayPrice);
 
         JButton btnRegister = new JButton("Register");
-        MainFrame.getInstance().getCurrentPanel().add(btnRegister);
+        btnRegister.setBounds(40, 310, 250, 30);
+        jDialog.add(btnRegister);
         btnRegister.addActionListener(event -> {
             try {
                 CarCreateDto carDto = new CarCreateDto(Long.parseLong(tfModelID.getText()), Long.parseLong(tfTypeID.getText()), Long.parseLong(tfCompanyID.getText()), Integer.parseInt(tfRentalDayPrice.getText()));
@@ -56,10 +67,6 @@ public class RegisterCarController implements ActionListener {
             }
         });
 
-        JButton btnCancel = new JButton("Cancel");
-        MainFrame.getInstance().getCurrentPanel().add(btnCancel);
-        btnCancel.addActionListener(event -> MainFrame.getInstance().clearContentPanelAndRefresh());
-
-        MainFrame.getInstance().refresh();
+        jDialog.setVisible(true);
     }
 }
