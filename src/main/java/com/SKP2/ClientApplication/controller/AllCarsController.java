@@ -2,7 +2,6 @@ package com.SKP2.ClientApplication.controller;
 
 import com.SKP2.ClientApplication.MainFrame;
 import com.SKP2.ClientApplication.dto.CarDto;
-import com.SKP2.ClientApplication.dto.CarListDto;
 import com.SKP2.ClientApplication.util.JTableImpl;
 
 import javax.swing.*;
@@ -17,17 +16,16 @@ public class AllCarsController implements ActionListener {
         JDialog jDialog = new JDialog();
         jDialog.setSize(1024, 768);
 
-        CarListDto list;
+        List<CarDto> list;
         try {
             list = MainFrame.getInstance().getRentalService().getAllCars();
         } catch (IOException ex) {
             ex.printStackTrace();
             throw new RuntimeException(ex);
         }
-        List<CarDto> content = list.getContent();
         Object[][] data = new Object[50][50];
         int k = 0;
-        for (CarDto dto : content)
+        for (CarDto dto : list)
             data[k++] = new Object[]{dto.getId(), dto.getModelName(), dto.getTypeName(), dto.getCompanyName(),
                     dto.getRentalDayPrice(), dto.isReserved(), dto.getStartDate(), dto.getEndDate()};
         String[] header = {"ID", "Model Name", "Type Name", "Company Name", "Rental Day Price", "Reserved Status",

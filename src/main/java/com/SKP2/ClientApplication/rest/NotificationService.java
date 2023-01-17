@@ -1,12 +1,17 @@
 package com.SKP2.ClientApplication.rest;
 
 import com.SKP2.ClientApplication.MainFrame;
-import com.SKP2.ClientApplication.dto.*;
+import com.SKP2.ClientApplication.dto.EmailDto;
+import com.SKP2.ClientApplication.dto.FilterEmailDto;
+import com.SKP2.ClientApplication.dto.NotificationTypeCreateDto;
+import com.SKP2.ClientApplication.dto.NotificationTypeDto;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.util.List;
 
 public class NotificationService {
     public static final String URL = "http://localhost:8081/api";
@@ -15,7 +20,7 @@ public class NotificationService {
     OkHttpClient client = new OkHttpClient();
     ObjectMapper objectMapper = new ObjectMapper();
 
-    public EmailListDto getAllEmails() throws IOException {
+    public List<EmailDto> getAllEmails() throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         String token = MainFrame.getInstance().getToken();
 
@@ -30,12 +35,13 @@ public class NotificationService {
         response.body().close();
 
         if (response.isSuccessful())
-            return objectMapper.readValue(json, EmailListDto.class);
+            return objectMapper.readValue(json, new TypeReference<List<EmailDto>>() {
+            });
 
         throw new IOException();
     }
 
-    public EmailListDto getFilterEmails(FilterEmailDto filterEmailDto) throws IOException {
+    public List<EmailDto> getFilterEmails(FilterEmailDto filterEmailDto) throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(filterEmailDto));
         String token = MainFrame.getInstance().getToken();
@@ -51,12 +57,12 @@ public class NotificationService {
         response.body().close();
 
         if (response.isSuccessful())
-            return objectMapper.readValue(json, EmailListDto.class);
-
+            return objectMapper.readValue(json, new TypeReference<List<EmailDto>>() {
+            });
         throw new IOException();
     }
 
-    public NotificationTypeListDto getAllNotificationTypes() throws IOException {
+    public List<NotificationTypeDto> getAllNotificationTypes() throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         String token = MainFrame.getInstance().getToken();
 
@@ -71,7 +77,8 @@ public class NotificationService {
         response.body().close();
 
         if (response.isSuccessful())
-            return objectMapper.readValue(json, NotificationTypeListDto.class);
+            return objectMapper.readValue(json, new TypeReference<List<NotificationTypeDto>>() {
+            });
 
         throw new IOException();
     }

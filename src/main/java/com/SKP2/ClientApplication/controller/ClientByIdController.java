@@ -12,6 +12,7 @@ public class ClientByIdController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblGet = new JLabel("Get Client By ID:");
@@ -35,7 +36,7 @@ public class ClientByIdController implements ActionListener {
                 JOptionPane.showMessageDialog(null, "ID: " + clientDto.getId() + "\nUsername: " + clientDto.getUsername() + "\nPassword: " + clientDto.getPassword()
                         + "\nEmail: " + clientDto.getEmail() + "\nDate of Birth: " + clientDto.getDayOfBirth() + "\nFirst name: " + clientDto.getFirstName() + "\nLast name: " + clientDto.getLastName()
                         + "\nPassport: " + clientDto.getPassport(), "Client " + tfUserID.getText(), JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "An error has occurred!", "Error", JOptionPane.ERROR_MESSAGE);
             }

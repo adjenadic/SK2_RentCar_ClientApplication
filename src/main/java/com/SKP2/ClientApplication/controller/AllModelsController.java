@@ -2,7 +2,6 @@ package com.SKP2.ClientApplication.controller;
 
 import com.SKP2.ClientApplication.MainFrame;
 import com.SKP2.ClientApplication.dto.ModelDto;
-import com.SKP2.ClientApplication.dto.ModelListDto;
 import com.SKP2.ClientApplication.util.JTableImpl;
 
 import javax.swing.*;
@@ -17,17 +16,16 @@ public class AllModelsController implements ActionListener {
         JDialog jDialog = new JDialog();
         jDialog.setSize(1024, 768);
 
-        ModelListDto list;
+        List<ModelDto> list;
         try {
             list = MainFrame.getInstance().getRentalService().getAllModels();
         } catch (IOException ex) {
             ex.printStackTrace();
             throw new RuntimeException(ex);
         }
-        List<ModelDto> content = list.getContent();
         Object[][] data = new Object[50][50];
         int k = 0;
-        for (ModelDto dto : content)
+        for (ModelDto dto : list)
             data[k++] = new Object[]{dto.getId(), dto.getName()};
         String[] header = {"ID", "Name"};
 

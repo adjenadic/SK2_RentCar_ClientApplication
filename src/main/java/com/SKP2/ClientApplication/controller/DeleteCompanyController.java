@@ -11,6 +11,7 @@ public class DeleteCompanyController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblDeleteID = new JLabel("Delete ID:");
@@ -35,12 +36,11 @@ public class DeleteCompanyController implements ActionListener {
                 } else {
                     JOptionPane.showMessageDialog(null, "Company " + tfID.getText() + " has not been deleted due to an error.", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
                 }
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "An error has occurred!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
-
 
 
         jDialog.setVisible(true);

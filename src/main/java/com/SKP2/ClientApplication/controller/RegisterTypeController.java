@@ -13,6 +13,7 @@ public class RegisterTypeController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblRegisterType = new JLabel("Register Type");
@@ -35,7 +36,7 @@ public class RegisterTypeController implements ActionListener {
                 TypeCreateDto typeCreateDto = new TypeCreateDto(tfTypeName.getText());
                 TypeDto typeDto = MainFrame.getInstance().getRentalService().registerType(typeCreateDto);
                 JOptionPane.showMessageDialog(null, "Type successfully registered.", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Type not registered!", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
             }

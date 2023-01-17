@@ -2,7 +2,6 @@ package com.SKP2.ClientApplication.controller;
 
 import com.SKP2.ClientApplication.MainFrame;
 import com.SKP2.ClientApplication.dto.EmailDto;
-import com.SKP2.ClientApplication.dto.EmailListDto;
 import com.SKP2.ClientApplication.util.JTableImpl;
 
 import javax.swing.*;
@@ -17,17 +16,16 @@ public class AllEmailsController implements ActionListener {
         JDialog jDialog = new JDialog();
         jDialog.setSize(1024, 768);
 
-        EmailListDto list;
+        List<EmailDto> list;
         try {
             list = MainFrame.getInstance().getNotificationService().getAllEmails();
         } catch (IOException ex) {
             ex.printStackTrace();
             throw new RuntimeException(ex);
         }
-        List<EmailDto> content = list.getContent();
         Object[][] data = new Object[50][50];
         int k = 0;
-        for (EmailDto dto : content)
+        for (EmailDto dto : list)
             data[k++] = new Object[]{dto.getSubject(), dto.getContext(), dto.getEmailFrom(), dto.getEmailTo(),
                     dto.getDate()};
         String[] header = {"Subject", "Context", "Email from", "Email to", "Date"};

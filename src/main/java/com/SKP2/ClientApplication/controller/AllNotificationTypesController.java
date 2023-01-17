@@ -2,7 +2,6 @@ package com.SKP2.ClientApplication.controller;
 
 import com.SKP2.ClientApplication.MainFrame;
 import com.SKP2.ClientApplication.dto.NotificationTypeDto;
-import com.SKP2.ClientApplication.dto.NotificationTypeListDto;
 import com.SKP2.ClientApplication.util.JTableImpl;
 
 import javax.swing.*;
@@ -17,17 +16,16 @@ public class AllNotificationTypesController implements ActionListener {
         JDialog jDialog = new JDialog();
         jDialog.setSize(1024, 768);
 
-        NotificationTypeListDto list;
+        List<NotificationTypeDto> list;
         try {
             list = MainFrame.getInstance().getNotificationService().getAllNotificationTypes();
         } catch (IOException ex) {
             ex.printStackTrace();
             throw new RuntimeException(ex);
         }
-        List<NotificationTypeDto> content = list.getContent();
         Object[][] data = new Object[50][50];
         int k = 0;
-        for (NotificationTypeDto dto : content)
+        for (NotificationTypeDto dto : list)
             data[k++] = new Object[]{dto.getId(), dto.getName()};
         String[] header = {"ID", "Name"};
 

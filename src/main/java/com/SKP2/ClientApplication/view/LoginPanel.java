@@ -48,7 +48,7 @@ public class LoginPanel extends JPanel {
                         MainFrame.getInstance().showClientPanel();
                         break;
                 }
-            } catch (IOException ex) {
+            } catch (IOException | RuntimeException ex) {
                 JOptionPane.showMessageDialog(null, "Invalid credentials or blocked account.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });

@@ -13,6 +13,7 @@ public class RegisterCarController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblRegisterCar = new JLabel("Register Car");
@@ -61,7 +62,7 @@ public class RegisterCarController implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Car successfully registered.\nID: " + updatedCarDto.getId() + "\nModel name: " + updatedCarDto.getModelName() + "\nType name: " + updatedCarDto.getTypeName()
                         + "\nCompany name: " + updatedCarDto.getCompanyName() + "\nRental day price: " + updatedCarDto.getRentalDayPrice() + "\nReserved: " + updatedCarDto.isReserved() + "\nStart date: " + updatedCarDto.getStartDate()
                         + "\nEnd date: " + updatedCarDto.getEndDate(), "Operation successful", JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Car not registered!", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
             }

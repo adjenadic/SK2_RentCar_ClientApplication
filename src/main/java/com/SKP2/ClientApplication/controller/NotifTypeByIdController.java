@@ -12,6 +12,7 @@ public class NotifTypeByIdController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblGet = new JLabel("Get Notification Type By ID");
@@ -33,7 +34,7 @@ public class NotifTypeByIdController implements ActionListener {
             try {
                 NotificationTypeDto notificationTypeDto = MainFrame.getInstance().getNotificationService().getNotificationTypeById(Long.parseLong(tfID.getText()));
                 JOptionPane.showMessageDialog(null, "ID: " + notificationTypeDto.getId() + "\nName: " + notificationTypeDto.getName(), "Notification Type " + tfID.getText(), JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "An error has occurred!", "Error", JOptionPane.ERROR_MESSAGE);
             }

@@ -13,13 +13,9 @@ public class JTableImpl extends JTable {
             }
         });
 
-        getTableHeader().setForeground(Color.WHITE);
-        getTableHeader().setBackground(Color.GREEN);
+        getTableHeader().setForeground(Color.BLACK);
+        getTableHeader().setBackground(Color.LIGHT_GRAY);
         setForeground(Color.BLACK);
-        setBackground(Color.DARK_GRAY);
-    }
-
-    public void setMyTableHeaderBackground(Color color) {
-        getTableHeader().setBackground(color);
+        setBackground(Color.LIGHT_GRAY);
     }
 }

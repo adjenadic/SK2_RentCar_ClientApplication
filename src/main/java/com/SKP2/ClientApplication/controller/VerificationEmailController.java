@@ -11,6 +11,7 @@ public class VerificationEmailController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblVerify = new JLabel("Verify Email");
@@ -35,7 +36,7 @@ public class VerificationEmailController implements ActionListener {
                 } else {
                     JOptionPane.showMessageDialog(null, "Client " + tfVerification.getText() + " has not been verified due to an error.", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
                 }
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "User has not been verified!", "Error", JOptionPane.ERROR_MESSAGE);
             }

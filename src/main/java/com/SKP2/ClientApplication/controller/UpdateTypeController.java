@@ -12,6 +12,7 @@ public class UpdateTypeController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblUpdate = new JLabel("Update Type");
@@ -42,7 +43,6 @@ public class UpdateTypeController implements ActionListener {
                 TypeDto typeDto = new TypeDto(Long.parseLong(tfID.getText()), tfTypeName.getText());
                 TypeDto updatedTypeDto = MainFrame.getInstance().getRentalService().updateType(typeDto);
                 JOptionPane.showMessageDialog(null, "Type " + updatedTypeDto.getId() + " successfully updated.", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Type not updated!", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
             }

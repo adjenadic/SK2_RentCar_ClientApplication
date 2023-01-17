@@ -13,6 +13,7 @@ public class RegisterNotifTypeController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblAdd = new JLabel("Add Notification Type");
@@ -35,7 +36,7 @@ public class RegisterNotifTypeController implements ActionListener {
                 NotificationTypeCreateDto notificationTypeCreateDto = new NotificationTypeCreateDto(tfName.getText());
                 NotificationTypeDto notificationTypeDto = MainFrame.getInstance().getNotificationService().registerNotificationType(notificationTypeCreateDto);
                 JOptionPane.showMessageDialog(null, "Notification type successfully added.", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Notification type not added!", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
             }

@@ -2,7 +2,6 @@ package com.SKP2.ClientApplication.controller;
 
 import com.SKP2.ClientApplication.MainFrame;
 import com.SKP2.ClientApplication.dto.CompanyDto;
-import com.SKP2.ClientApplication.dto.CompanyListDto;
 import com.SKP2.ClientApplication.util.JTableImpl;
 
 import javax.swing.*;
@@ -17,17 +16,16 @@ public class SortCompaniesByRateController implements ActionListener {
         JDialog jDialog = new JDialog();
         jDialog.setSize(1024, 768);
 
-        CompanyListDto list;
+        List<CompanyDto> list;
         try {
             list = MainFrame.getInstance().getRentalService().sortCompaniesByRate();
         } catch (IOException ex) {
             ex.printStackTrace();
             throw new RuntimeException(ex);
         }
-        List<CompanyDto> content = list.getContent();
         Object[][] data = new Object[50][50];
         int k = 0;
-        for (CompanyDto dto : content)
+        for (CompanyDto dto : list)
             data[k++] = new Object[]{dto.getId(), dto.getName(), dto.getDescription(), dto.getNumOfCars(),
                     dto.getCity(), dto.getCarList()};
         String[] header = {"ID", "Name", "Description", "Num of Cars", "City", "Car List"};

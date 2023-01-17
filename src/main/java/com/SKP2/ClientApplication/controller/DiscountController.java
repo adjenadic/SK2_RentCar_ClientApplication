@@ -12,6 +12,7 @@ public class DiscountController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblGet = new JLabel("Get Discount By ID");
@@ -33,7 +34,7 @@ public class DiscountController implements ActionListener {
             try {
                 DiscountDto discountDto = MainFrame.getInstance().getUserService().getDiscount(Long.parseLong(tfID.getText()));
                 JOptionPane.showMessageDialog(null, "Discount: " + discountDto.getDiscount(), "Discount " + tfID.getText(), JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "An error has occurred!", "Error", JOptionPane.ERROR_MESSAGE);
             }

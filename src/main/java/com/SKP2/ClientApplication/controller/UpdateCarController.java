@@ -15,6 +15,7 @@ public class UpdateCarController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblUpdateCar = new JLabel("Update Car");
@@ -92,7 +93,7 @@ public class UpdateCarController implements ActionListener {
                 CarDto updatedCarDto = MainFrame.getInstance().getRentalService().updateCar(carDto);
                 JOptionPane.showMessageDialog(null, "Car successfully updated.\nID: " + updatedCarDto.getId() + "\nModel name: " + updatedCarDto.getModelName() + "\nType name: " + updatedCarDto.getTypeName()
                         + "\nCompany name: " + updatedCarDto.getCompanyName() + "\nRental day price: " + updatedCarDto.getRentalDayPrice() + "\nReserved status: " + updatedCarDto.isReserved() + "\nStart date: " + updatedCarDto.getStartDate() + "\nEnd date: " + updatedCarDto.getEndDate(), "Operation successful", JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException | ParseException ex) {
                 JOptionPane.showMessageDialog(null, "Car not updated!", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
             }

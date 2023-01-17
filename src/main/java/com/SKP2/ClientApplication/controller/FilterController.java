@@ -3,7 +3,6 @@ package com.SKP2.ClientApplication.controller;
 import com.SKP2.ClientApplication.MainFrame;
 import com.SKP2.ClientApplication.dto.CarDto;
 import com.SKP2.ClientApplication.dto.CarFilterDto;
-import com.SKP2.ClientApplication.dto.CarListDto;
 import com.SKP2.ClientApplication.util.JTableImpl;
 
 import javax.swing.*;
@@ -19,6 +18,7 @@ public class FilterController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblFilter = new JLabel("Filter Parameters");
@@ -62,7 +62,7 @@ public class FilterController implements ActionListener {
         jDialog.add(btnFilter);
 
         btnFilter.addActionListener(e1 -> {
-            CarListDto list;
+            List<CarDto> list;
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 Date startDate = sdf.parse(tfStartDate.getText());
@@ -75,10 +75,9 @@ public class FilterController implements ActionListener {
                 ex.printStackTrace();
                 throw new RuntimeException(ex);
             }
-            List<CarDto> content = list.getContent();
             Object[][] data = new Object[50][50];
             int k = 0;
-            for (CarDto dto : content)
+            for (CarDto dto : list)
                 data[k++] = new Object[]{dto.getId(), dto.getModelName(), dto.getTypeName(), dto.getCompanyName(),
                         dto.getRentalDayPrice(), dto.isReserved(), dto.getStartDate(), dto.getEndDate()};
             String[] header = {"ID", "Model Name", "Type Name", "Company Name", "Rental Day Price", "Reserved Status",

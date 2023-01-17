@@ -16,6 +16,7 @@ public class AddReservationController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblAdd = new JLabel("Add Reservation");
@@ -59,7 +60,7 @@ public class AddReservationController implements ActionListener {
                 ReservationCreateDto reservationCreateDto = new ReservationCreateDto(Long.parseLong(tfCarID.getText()), startDateToSqlDate, endDateToSqlDate);
                 ReservationDto reservationDto = MainFrame.getInstance().getRentalService().addReservation(reservationCreateDto);
                 JOptionPane.showMessageDialog(null, "Reservation successfully added.", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException | ParseException ex) {
                 JOptionPane.showMessageDialog(null, "Reservation not registered!", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
             }

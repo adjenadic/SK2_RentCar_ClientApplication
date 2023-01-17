@@ -2,11 +2,13 @@ package com.SKP2.ClientApplication.rest;
 
 import com.SKP2.ClientApplication.MainFrame;
 import com.SKP2.ClientApplication.dto.*;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.util.List;
 
 public class UserService {
     public static final String URL = "http://localhost:8080/api";
@@ -34,7 +36,7 @@ public class UserService {
         throw new IOException();
     }
 
-    public ClientListDto getAllClients() throws IOException {
+    public List<ClientDto> getAllClients() throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         String token = MainFrame.getInstance().getToken();
 
@@ -49,8 +51,8 @@ public class UserService {
         response.body().close();
 
         if (response.isSuccessful())
-            return objectMapper.readValue(json, ClientListDto.class);
-
+            return objectMapper.readValue(json, new TypeReference<List<ClientDto>>() {
+            });
         throw new IOException();
     }
 
@@ -171,7 +173,7 @@ public class UserService {
         throw new IOException();
     }
 
-    public ManagerListDto getAllManagers() throws IOException {
+    public List<ManagerDto> getAllManagers() throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         String token = MainFrame.getInstance().getToken();
 
@@ -186,7 +188,8 @@ public class UserService {
         response.body().close();
 
         if (response.isSuccessful())
-            return objectMapper.readValue(json, ManagerListDto.class);
+            return objectMapper.readValue(json, new TypeReference<List<ManagerDto>>() {
+            });
 
         throw new IOException();
     }

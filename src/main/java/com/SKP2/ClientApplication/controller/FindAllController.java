@@ -2,7 +2,6 @@ package com.SKP2.ClientApplication.controller;
 
 import com.SKP2.ClientApplication.MainFrame;
 import com.SKP2.ClientApplication.dto.ReviewDto;
-import com.SKP2.ClientApplication.dto.ReviewListDto;
 import com.SKP2.ClientApplication.util.JTableImpl;
 
 import javax.swing.*;
@@ -15,18 +14,18 @@ public class FindAllController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
-        ReviewListDto list = null;
+        List<ReviewDto> list;
         try {
             list = MainFrame.getInstance().getRentalService().findAll();
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
-        List<ReviewDto> content = list.getContent();
         Object[][] data = new Object[50][50];
         int k = 0;
-        for (ReviewDto dto : content)
+        for (ReviewDto dto : list)
             data[k++] = new Object[]{dto.getId(), dto.getCompanyId(), dto.getRate(), dto.getDesc()};
         String[] header = {"ID", "Company ID", "Rate", "Description"};
 

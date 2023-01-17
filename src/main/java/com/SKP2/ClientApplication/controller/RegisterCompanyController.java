@@ -13,6 +13,7 @@ public class RegisterCompanyController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblRegisterCompany = new JLabel("Register Company");
@@ -60,7 +61,7 @@ public class RegisterCompanyController implements ActionListener {
                 CompanyDto updatedCompanyDto = MainFrame.getInstance().getRentalService().registerCompany(companyCreateDto);
                 JOptionPane.showMessageDialog(null, "Company successfully registered.\nID: " + updatedCompanyDto.getId() + "\nCompany name: " + updatedCompanyDto.getName() + "\nDescription: " + updatedCompanyDto.getDescription()
                         + "\nNum of Cars: " + updatedCompanyDto.getNumOfCars() + "\nCity: " + updatedCompanyDto.getCity(), "Operation successful", JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Company not registered!", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
             }

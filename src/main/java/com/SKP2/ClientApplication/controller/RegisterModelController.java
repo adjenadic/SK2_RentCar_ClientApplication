@@ -13,6 +13,7 @@ public class RegisterModelController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblRegisterModel = new JLabel("Register Model");
@@ -35,7 +36,7 @@ public class RegisterModelController implements ActionListener {
                 ModelCreateDto modelCreateDto = new ModelCreateDto(tfModelName.getText());
                 ModelDto modelDto = MainFrame.getInstance().getRentalService().registerModel(modelCreateDto);
                 JOptionPane.showMessageDialog(null, "Model successfully registered.", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Model not registered!", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
             }

@@ -12,6 +12,7 @@ public class UpdateNotifTypeController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblUpdate = new JLabel("Update Notification Type");
@@ -42,7 +43,7 @@ public class UpdateNotifTypeController implements ActionListener {
                 NotificationTypeDto notificationTypeDto = new NotificationTypeDto(Long.parseLong(tfID.getText()), tfName.getText());
                 NotificationTypeDto updatedNotificationTypeDto = MainFrame.getInstance().getNotificationService().updateNotificationType(notificationTypeDto);
                 JOptionPane.showMessageDialog(null, "Notification Type " + updatedNotificationTypeDto.getId() + " successfully updated.", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Notification Type not updated!", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
             }

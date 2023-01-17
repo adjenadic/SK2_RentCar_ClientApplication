@@ -12,6 +12,7 @@ public class CarByIdController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblGet = new JLabel("Get Car By ID");
@@ -35,7 +36,7 @@ public class CarByIdController implements ActionListener {
                 JOptionPane.showMessageDialog(null, "ID: " + carDto.getId() + "\nModel Name: " + carDto.getModelName() + "\nType Name: " + carDto.getTypeName()
                         + "\nCompany Name: " + carDto.getCompanyName() + "\nRental Day Price: " + carDto.getRentalDayPrice() + "\nReserved Status: " + carDto.isReserved()
                         + "\nStart Date: " + carDto.getStartDate() + "\nEnd Date: " + carDto.getEndDate(), "Car " + tfCarID.getText(), JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "An error has occurred!", "Error", JOptionPane.ERROR_MESSAGE);
             }

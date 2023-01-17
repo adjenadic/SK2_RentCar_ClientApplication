@@ -2,7 +2,6 @@ package com.SKP2.ClientApplication.controller;
 
 import com.SKP2.ClientApplication.MainFrame;
 import com.SKP2.ClientApplication.dto.EmailDto;
-import com.SKP2.ClientApplication.dto.EmailListDto;
 import com.SKP2.ClientApplication.dto.FilterEmailDto;
 import com.SKP2.ClientApplication.util.JTableImpl;
 
@@ -19,6 +18,7 @@ public class FilterEmailsController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblFilter = new JLabel("Filter Parameters");
@@ -61,7 +61,7 @@ public class FilterEmailsController implements ActionListener {
         btnFilter.setBounds(40, 250, 250, 30);
         jDialog.add(btnFilter);
         btnFilter.addActionListener(e1 -> {
-            EmailListDto list;
+            List<EmailDto> list;
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 Date startDate = sdf.parse(tfStartDate.getText());
@@ -74,10 +74,9 @@ public class FilterEmailsController implements ActionListener {
                 ex.printStackTrace();
                 throw new RuntimeException(ex);
             }
-            List<EmailDto> content = list.getContent();
             Object[][] data = new Object[50][50];
             int k = 0;
-            for (EmailDto dto : content)
+            for (EmailDto dto : list)
                 data[k++] = new Object[]{dto.getSubject(), dto.getContext(), dto.getEmailFrom(), dto.getEmailTo(),
                         dto.getDate()};
             String[] header = {"Subject", "Context", "Email from", "Email to", "Date"};

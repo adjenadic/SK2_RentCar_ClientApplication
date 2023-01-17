@@ -15,6 +15,7 @@ public class UpdateManagerController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblUpdateManager = new JLabel("Update Manager");
@@ -115,7 +116,7 @@ public class UpdateManagerController implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Manager successfully updated.\nID: " + updateManagerDto.getId() + "\nUsername: " + updateManagerDto.getUsername() + "\nPassword: " + updateManagerDto.getPassword()
                         + "\nEmail: " + updateManagerDto.getEmail() + "\nDate of Birth: " + updateManagerDto.getDayOfBirth() + "\nFirst name: " + updateManagerDto.getFirstName() + "\nLast name: " + updateManagerDto.getLastName()
                         + "\nCompany name: " + updateManagerDto.getCompanyName() + "\nEmployment day: " + updateManagerDto.getEmploymentDay(), "Operation successful", JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException | ParseException ex) {
                 JOptionPane.showMessageDialog(null, "Manager account not updated!", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
             }

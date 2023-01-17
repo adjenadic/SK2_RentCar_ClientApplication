@@ -11,6 +11,7 @@ public class ForbidController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblBlock = new JLabel("Forbid a User Account");
@@ -31,11 +32,11 @@ public class ForbidController implements ActionListener {
         btnBlock.addActionListener(event -> {
             try {
                 if (MainFrame.getInstance().getUserService().forbid(Long.parseLong(tfUserID.getText()))) {
-                    JOptionPane.showMessageDialog(null, "Client " + tfUserID.getText() + " successfully deleted.", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Client " + tfUserID.getText() + " successfully blocked.", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Client " + tfUserID.getText() + " has not been deleted due to an error.", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Client " + tfUserID.getText() + " has not been blocked due to an error.", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
                 }
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+                
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "User has not been blocked!", "Error", JOptionPane.ERROR_MESSAGE);
             }

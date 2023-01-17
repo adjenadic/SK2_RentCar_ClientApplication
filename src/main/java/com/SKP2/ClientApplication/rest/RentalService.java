@@ -2,11 +2,13 @@ package com.SKP2.ClientApplication.rest;
 
 import com.SKP2.ClientApplication.MainFrame;
 import com.SKP2.ClientApplication.dto.*;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.util.List;
 
 public class RentalService {
     public static final String URL = "http://localhost:8082/api";
@@ -15,7 +17,7 @@ public class RentalService {
     OkHttpClient client = new OkHttpClient();
     ObjectMapper objectMapper = new ObjectMapper();
 
-    public CarListDto getAllCars() throws IOException {
+    public List<CarDto> getAllCars() throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         String token = MainFrame.getInstance().getToken();
 
@@ -30,7 +32,8 @@ public class RentalService {
         response.body().close();
 
         if (response.isSuccessful())
-            return objectMapper.readValue(json, CarListDto.class);
+            return objectMapper.readValue(json, new TypeReference<List<CarDto>>() {
+            });
 
         throw new IOException();
     }
@@ -55,7 +58,7 @@ public class RentalService {
         throw new IOException();
     }
 
-    public CarListDto sortASC() throws IOException {
+    public List<CarDto> sortASC() throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         String token = MainFrame.getInstance().getToken();
 
@@ -70,12 +73,13 @@ public class RentalService {
         response.body().close();
 
         if (response.isSuccessful())
-            return objectMapper.readValue(json, CarListDto.class);
+            return objectMapper.readValue(json, new TypeReference<List<CarDto>>() {
+            });
 
         throw new IOException();
     }
 
-    public CarListDto sortDESC() throws IOException {
+    public List<CarDto> sortDESC() throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         String token = MainFrame.getInstance().getToken();
 
@@ -90,12 +94,13 @@ public class RentalService {
         response.body().close();
 
         if (response.isSuccessful())
-            return objectMapper.readValue(json, CarListDto.class);
+            return objectMapper.readValue(json, new TypeReference<List<CarDto>>() {
+            });
 
         throw new IOException();
     }
 
-    public CarListDto filter(CarFilterDto carFilterDto) throws IOException {
+    public List<CarDto> filter(CarFilterDto carFilterDto) throws IOException {
         RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(carFilterDto));
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         String token = MainFrame.getInstance().getToken();
@@ -111,7 +116,8 @@ public class RentalService {
         response.body().close();
 
         if (response.isSuccessful())
-            return objectMapper.readValue(json, CarListDto.class);
+            return objectMapper.readValue(json, new TypeReference<List<CarDto>>() {
+            });
 
         throw new IOException();
     }
@@ -174,7 +180,7 @@ public class RentalService {
         throw new IOException();
     }
 
-    public CompanyListDto getAllCompanies() throws IOException {
+    public List<CompanyDto> getAllCompanies() throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         String token = MainFrame.getInstance().getToken();
 
@@ -189,7 +195,8 @@ public class RentalService {
         response.body().close();
 
         if (response.isSuccessful())
-            return objectMapper.readValue(json, CompanyListDto.class);
+            return objectMapper.readValue(json, new TypeReference<List<CompanyDto>>() {
+            });
 
         throw new IOException();
     }
@@ -214,7 +221,7 @@ public class RentalService {
         throw new IOException();
     }
 
-    public CompanyListDto sortCompaniesByRate() throws IOException {
+    public List<CompanyDto> sortCompaniesByRate() throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         String token = MainFrame.getInstance().getToken();
 
@@ -229,7 +236,8 @@ public class RentalService {
         response.body().close();
 
         if (response.isSuccessful())
-            return objectMapper.readValue(json, CompanyListDto.class);
+            return objectMapper.readValue(json, new TypeReference<List<CompanyDto>>() {
+            });
 
         throw new IOException();
     }
@@ -292,7 +300,7 @@ public class RentalService {
         throw new IOException();
     }
 
-    public ModelListDto getAllModels() throws IOException {
+    public List<ModelDto> getAllModels() throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         String token = MainFrame.getInstance().getToken();
 
@@ -307,7 +315,8 @@ public class RentalService {
         response.body().close();
 
         if (response.isSuccessful())
-            return objectMapper.readValue(json, ModelListDto.class);
+            return objectMapper.readValue(json, new TypeReference<List<ModelDto>>() {
+            });
 
         throw new IOException();
     }
@@ -431,7 +440,7 @@ public class RentalService {
         throw new IOException();
     }
 
-    public ReviewListDto findAll() throws IOException {
+    public List<ReviewDto> findAll() throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         String token = MainFrame.getInstance().getToken();
 
@@ -446,7 +455,8 @@ public class RentalService {
         response.body().close();
 
         if (response.isSuccessful())
-            return objectMapper.readValue(json, ReviewListDto.class);
+            return objectMapper.readValue(json, new TypeReference<List<ReviewDto>>() {
+            });
 
         throw new IOException();
     }
@@ -471,7 +481,7 @@ public class RentalService {
         throw new IOException();
     }
 
-    public ReviewListDto filterReview(ReviewFilterDto reviewFilterDto) throws IOException {
+    public List<ReviewDto> filterReview(ReviewFilterDto reviewFilterDto) throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         String token = MainFrame.getInstance().getToken();
 
@@ -486,7 +496,8 @@ public class RentalService {
         response.body().close();
 
         if (response.isSuccessful())
-            return objectMapper.readValue(json, ReviewListDto.class);
+            return objectMapper.readValue(json, new TypeReference<List<ReviewDto>>() {
+            });
 
         throw new IOException();
     }
@@ -551,7 +562,7 @@ public class RentalService {
         throw new IOException();
     }
 
-    public TypeListDto getAllTypes() throws IOException {
+    public List<TypeDto> getAllTypes() throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         String token = MainFrame.getInstance().getToken();
 
@@ -566,7 +577,8 @@ public class RentalService {
         response.body().close();
 
         if (response.isSuccessful())
-            return objectMapper.readValue(json, TypeListDto.class);
+            return objectMapper.readValue(json, new TypeReference<List<TypeDto>>() {
+            });
 
         throw new IOException();
     }

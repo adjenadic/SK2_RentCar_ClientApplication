@@ -12,6 +12,7 @@ public class TypeByIdController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblGet = new JLabel("Get Type By ID");
@@ -33,7 +34,7 @@ public class TypeByIdController implements ActionListener {
             try {
                 TypeDto typeDto = MainFrame.getInstance().getRentalService().getTypeById(Long.parseLong(tfTypeID.getText()));
                 JOptionPane.showMessageDialog(null, "ID: " + typeDto.getId() + "\nName: " + typeDto.getName(), "Type " + tfTypeID.getText(), JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "An error has occurred!", "Error", JOptionPane.ERROR_MESSAGE);
             }

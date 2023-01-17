@@ -3,7 +3,6 @@ package com.SKP2.ClientApplication.controller;
 import com.SKP2.ClientApplication.MainFrame;
 import com.SKP2.ClientApplication.dto.ReviewDto;
 import com.SKP2.ClientApplication.dto.ReviewFilterDto;
-import com.SKP2.ClientApplication.dto.ReviewListDto;
 import com.SKP2.ClientApplication.util.JTableImpl;
 
 import javax.swing.*;
@@ -16,6 +15,7 @@ public class FilterReviewController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblFilter = new JLabel("Filter Parameters");
@@ -43,7 +43,7 @@ public class FilterReviewController implements ActionListener {
         jDialog.add(btnFilter);
 
         btnFilter.addActionListener(e1 -> {
-            ReviewListDto list;
+            List<ReviewDto> list;
             try {
                 ReviewFilterDto reviewFilterDto = new ReviewFilterDto(tfCity.getText(), Long.parseLong(tfCompanyID.getText()));
                 list = MainFrame.getInstance().getRentalService().filterReview(reviewFilterDto);
@@ -51,10 +51,9 @@ public class FilterReviewController implements ActionListener {
                 ex.printStackTrace();
                 throw new RuntimeException(ex);
             }
-            List<ReviewDto> content = list.getContent();
             Object[][] data = new Object[50][50];
             int k = 0;
-            for (ReviewDto dto : content)
+            for (ReviewDto dto : list)
                 data[k++] = new Object[]{dto.getId(), dto.getCompanyId(), dto.getRate(), dto.getDesc()};
             String[] header = {"ID", "Company ID", "Rate", "Description"};
 

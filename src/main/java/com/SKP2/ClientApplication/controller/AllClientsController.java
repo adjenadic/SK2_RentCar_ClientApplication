@@ -2,7 +2,6 @@ package com.SKP2.ClientApplication.controller;
 
 import com.SKP2.ClientApplication.MainFrame;
 import com.SKP2.ClientApplication.dto.ClientDto;
-import com.SKP2.ClientApplication.dto.ClientListDto;
 import com.SKP2.ClientApplication.util.JTableImpl;
 
 import javax.swing.*;
@@ -17,16 +16,15 @@ public class AllClientsController implements ActionListener {
         JDialog jDialog = new JDialog();
         jDialog.setSize(1024, 768);
 
-        ClientListDto list;
+        List<ClientDto> list;
         try {
             list = MainFrame.getInstance().getUserService().getAllClients();
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
-        List<ClientDto> content = list.getContent();
         Object[][] data = new Object[50][50];
         int k = 0;
-        for (ClientDto dto : content)
+        for (ClientDto dto : list)
             data[k++] = new Object[]{dto.getId(), dto.getUsername(), dto.getPassword(), dto.getEmail(),
                     dto.getDayOfBirth(), dto.getFirstName(), dto.getLastName(), dto.getPassport()};
         String[] header = {"ID", "Username", "Password", "Email", "Date of Birth",

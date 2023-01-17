@@ -15,6 +15,7 @@ public class UpdateAdminController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblUpdateAdmin = new JLabel("Update Admin");
@@ -98,7 +99,7 @@ public class UpdateAdminController implements ActionListener {
                 AdminDto updatedAdminDto = MainFrame.getInstance().getUserService().updateAdmin(adminDto);
                 JOptionPane.showMessageDialog(null, "Admin successfully updated.\nID: " + updatedAdminDto.getId() + "\nUsername: " + updatedAdminDto.getUsername() + "\nPassword: " + updatedAdminDto.getPassword()
                         + "\nEmail: " + updatedAdminDto.getEmail() + "\nDate of Birth: " + updatedAdminDto.getDayOfBirth() + "\nFirst name: " + updatedAdminDto.getFirstName() + "\nLast name: " + updatedAdminDto.getLastName(), "Operation successful", JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException | ParseException ex) {
                 JOptionPane.showMessageDialog(null, "Admin account not updated!", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
             }

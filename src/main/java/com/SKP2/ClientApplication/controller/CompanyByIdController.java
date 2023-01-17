@@ -12,6 +12,7 @@ public class CompanyByIdController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblGet = new JLabel("Get Company By ID");
@@ -34,7 +35,7 @@ public class CompanyByIdController implements ActionListener {
                 CompanyDto companyDto = MainFrame.getInstance().getRentalService().getCompanyById(Long.parseLong(tfCompanyID.getText()));
                 JOptionPane.showMessageDialog(null, "ID: " + companyDto.getId() + "\nCompany name: " + companyDto.getName() + "\nDescription: " + companyDto.getDescription()
                         + "\nNum of Cars: " + companyDto.getNumOfCars() + "\nCity: " + companyDto.getCity() + "\nCar List: " + companyDto.getCarList(), "Company " + tfCompanyID.getText(), JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "An error has occurred!", "Error", JOptionPane.ERROR_MESSAGE);
             }

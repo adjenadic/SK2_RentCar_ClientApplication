@@ -12,6 +12,7 @@ public class FindByIdController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblGet = new JLabel("Get Review By ID");
@@ -34,7 +35,7 @@ public class FindByIdController implements ActionListener {
                 ReviewDto reviewDto = MainFrame.getInstance().getRentalService().findById(Long.parseLong(tfID.getText()));
                 JOptionPane.showMessageDialog(null, "ID: " + reviewDto.getId() + "\nCompany ID: " + reviewDto.getCompanyId() + "\nRate: " + reviewDto.getRate()
                         + "\nDescription: " + reviewDto.getDesc(), "Review " + tfID.getText(), JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "An error has occurred!", "Error", JOptionPane.ERROR_MESSAGE);
             }

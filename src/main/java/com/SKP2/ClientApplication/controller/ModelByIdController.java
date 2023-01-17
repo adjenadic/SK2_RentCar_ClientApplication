@@ -12,6 +12,7 @@ public class ModelByIdController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblGet = new JLabel("Get Model By ID");
@@ -33,7 +34,7 @@ public class ModelByIdController implements ActionListener {
             try {
                 ModelDto modelDto = MainFrame.getInstance().getRentalService().getModelById(Long.parseLong(tfModelID.getText()));
                 JOptionPane.showMessageDialog(null, "ID: " + modelDto.getId() + "\nName: " + modelDto.getName(), "Model " + tfModelID.getText(), JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "An error has occurred!", "Error", JOptionPane.ERROR_MESSAGE);
             }

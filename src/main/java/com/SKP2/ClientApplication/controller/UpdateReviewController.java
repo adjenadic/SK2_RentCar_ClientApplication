@@ -12,6 +12,7 @@ public class UpdateReviewController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblUpdateCar = new JLabel("Update Review");
@@ -58,7 +59,7 @@ public class UpdateReviewController implements ActionListener {
                 ReviewDto reviewDto = new ReviewDto(Long.parseLong(tfID.getText()), Long.parseLong(tfCompanyID.getText()), Integer.parseInt(tfRate.getText()), tfDesc.getText());
                 ReviewDto updatedReviewDto = MainFrame.getInstance().getRentalService().update(reviewDto);
                 JOptionPane.showMessageDialog(null, "Review " + updatedReviewDto.getId() + " successfully updated.", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Review not updated!", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
             }

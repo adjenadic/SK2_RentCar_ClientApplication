@@ -15,6 +15,7 @@ public class UpdateClientController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
+        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         JLabel lblUpdateClient = new JLabel("Update Client");
@@ -107,7 +108,7 @@ public class UpdateClientController implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Client successfully updated.\nID: " + updatedClientDto.getId() + "\nUsername: " + updatedClientDto.getUsername() + "\nPassword: " + updatedClientDto.getPassword()
                         + "\nEmail: " + updatedClientDto.getEmail() + "\nDate of Birth: " + updatedClientDto.getDayOfBirth() + "\nFirst name: " + updatedClientDto.getFirstName() + "\nLast name: " + updatedClientDto.getLastName()
                         + "\nPassport: " + updatedClientDto.getPassport(), "Operation successful", JOptionPane.INFORMATION_MESSAGE);
-                MainFrame.getInstance().clearContentPanelAndRefresh();
+
             } catch (IOException | ParseException ex) {
                 JOptionPane.showMessageDialog(null, "Client account not updated!", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
             }
