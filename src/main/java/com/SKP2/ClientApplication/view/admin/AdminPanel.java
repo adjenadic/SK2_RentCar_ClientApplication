@@ -20,15 +20,11 @@ public class AdminPanel extends JPanel {
         userService.add(allClients);
         allClients.addActionListener(new AllClientsController());
 
-        JMenuItem allManagers = new JMenuItem("All Managers");
-        userService.add(allManagers);
-        allManagers.addActionListener(new AllManagersController());
-
-        userService.addSeparator();
-
         JMenuItem byClientId = new JMenuItem("Get By Client ID");
         userService.add(byClientId);
         byClientId.addActionListener(new ClientByIdController());
+
+        // TODO REGISTER CLIENT BUTTON
 
         JMenuItem updateClient = new JMenuItem("Update Client");
         userService.add(updateClient);
@@ -40,17 +36,23 @@ public class AdminPanel extends JPanel {
 
         userService.addSeparator();
 
+        JMenuItem allManagers = new JMenuItem("All Managers");
+        userService.add(allManagers);
+        allManagers.addActionListener(new AllManagersController());
+
         JMenuItem byManagerId = new JMenuItem("Get By Manager ID");
         userService.add(byManagerId);
         byManagerId.addActionListener(new ManagerByIdController());
 
-        JMenuItem updateManager = new JMenuItem("Update Manager");
-        userService.add(updateManager);
-        updateManager.addActionListener(new UpdateManagerController());
+        // TODO REGISTER MANAGER BUTTON
 
         JMenuItem deleteManager = new JMenuItem("Delete Manager");
         userService.add(deleteManager);
         deleteManager.addActionListener(new DeleteManagerController());
+
+        JMenuItem updateManager = new JMenuItem("Update Manager");
+        userService.add(updateManager);
+        updateManager.addActionListener(new UpdateManagerController());
 
         userService.addSeparator();
 
@@ -74,6 +76,8 @@ public class AdminPanel extends JPanel {
         userService.add(addRank);
         addRank.addActionListener(new AddRankController());
 
+        userService.addSeparator();
+
         JMenuItem discount = new JMenuItem("Get Discount By ID");
         userService.add(discount);
         discount.addActionListener(new DiscountController());
@@ -82,97 +86,15 @@ public class AdminPanel extends JPanel {
         JMenu rentalService = new JMenu("Rental Service");
         menuBar.add(rentalService);
 
-        JMenuItem allCars = new JMenuItem("All Cars");
-        rentalService.add(allCars);
-        allCars.addActionListener(new AllCarsController());
-
-        JMenuItem byCarId = new JMenuItem("Get By Car ID");
-        rentalService.add(byCarId);
-        byCarId.addActionListener(new CarByIdController());
-
-        JMenuItem sortASC = new JMenuItem("Sort Cars ASC");
-        rentalService.add(sortASC);
-        sortASC.addActionListener(new SortASCController());
-
-        JMenuItem sortDESC = new JMenuItem("Sort Cars DESC");
-        rentalService.add(sortDESC);
-        sortDESC.addActionListener(new SortDESCController());
-
         JMenuItem filter = new JMenuItem("Filter");
         rentalService.add(filter);
         filter.addActionListener(new FilterController());
 
         rentalService.addSeparator();
 
-        JMenuItem registerCar = new JMenuItem("Register Car");
-        rentalService.add(registerCar);
-        registerCar.addActionListener(new RegisterCarController());
-
-        JMenuItem deleteCar = new JMenuItem("Delete Car");
-        rentalService.add(deleteCar);
-        deleteCar.addActionListener(new DeleteCarController());
-
-        JMenuItem updateCar = new JMenuItem("Update Car");
-        rentalService.add(updateCar);
-        updateCar.addActionListener(new UpdateCarController());
-
-        rentalService.addSeparator();
-
-        JMenuItem allCompanies = new JMenuItem("Get All Companies");
-        rentalService.add(allCompanies);
-        allCompanies.addActionListener(new AllCompaniesController());
-
-        JMenuItem byCompanyID = new JMenuItem("Get By Company ID");
-        rentalService.add(byCompanyID);
-        byCompanyID.addActionListener(new CompanyByIdController());
-
         JMenuItem sortCompaniesByRate = new JMenuItem("Sort Companies By Rate");
         rentalService.add(sortCompaniesByRate);
         sortCompaniesByRate.addActionListener(new SortCompaniesByRateController());
-
-        JMenuItem registerCompany = new JMenuItem("Register Company");
-        rentalService.add(registerCompany);
-        registerCompany.addActionListener(new RegisterCompanyController());
-
-        JMenuItem deleteCompany = new JMenuItem("Delete Company");
-        rentalService.add(deleteCompany);
-        deleteCompany.addActionListener(new DeleteCompanyController());
-
-        JMenuItem updateCompany = new JMenuItem("Update Company");
-        rentalService.add(updateCompany);
-        updateCompany.addActionListener(new UpdateCompanyController());
-
-        rentalService.addSeparator();
-
-        JMenuItem allModels = new JMenuItem("All Models");
-        rentalService.add(allModels);
-        allModels.addActionListener(new AllModelsController());
-
-        JMenuItem byModelID = new JMenuItem("Get By Model ID");
-        rentalService.add(byModelID);
-        byModelID.addActionListener(new ModelByIdController());
-
-        JMenuItem registerModel = new JMenuItem("Register Model");
-        rentalService.add(registerModel);
-        registerModel.addActionListener(new RegisterModelController());
-
-        JMenuItem deleteModel = new JMenuItem("Delete Model");
-        rentalService.add(deleteModel);
-        deleteModel.addActionListener(new DeleteModelController());
-
-        JMenuItem updateModel = new JMenuItem("Update Model");
-        rentalService.add(updateModel);
-        updateModel.addActionListener(new UpdateModelController());
-
-        rentalService.addSeparator();
-
-        JMenuItem addReservation = new JMenuItem("Add Reservation");
-        rentalService.add(addReservation);
-        addReservation.addActionListener(new AddReservationController());
-
-        JMenuItem cancelReservation = new JMenuItem("Cancel Reservation");
-        rentalService.add(cancelReservation);
-        cancelReservation.addActionListener(new CancelReservationController());
 
         rentalService.addSeparator();
 
@@ -199,28 +121,6 @@ public class AdminPanel extends JPanel {
         JMenuItem updateReview = new JMenuItem("Update Review");
         rentalService.add(updateReview);
         updateReview.addActionListener(new UpdateReviewController());
-
-        rentalService.addSeparator();
-
-        JMenuItem allTypes = new JMenuItem("All Types");
-        rentalService.add(allTypes);
-        allTypes.addActionListener(new AllTypesController());
-
-        JMenuItem byTypeID = new JMenuItem("Get By Type ID");
-        rentalService.add(byTypeID);
-        byTypeID.addActionListener(new TypeByIdController());
-
-        JMenuItem registerType = new JMenuItem("Register Type");
-        rentalService.add(registerType);
-        registerType.addActionListener(new RegisterTypeController());
-
-        JMenuItem deleteType = new JMenuItem("Delete Type");
-        rentalService.add(deleteType);
-        deleteType.addActionListener(new DeleteTypeController());
-
-        JMenuItem updateType = new JMenuItem("Update Type");
-        rentalService.add(updateType);
-        updateType.addActionListener(new UpdateTypeController());
 
         // Notification Service
         JMenu notificationService = new JMenu("Notification Service");

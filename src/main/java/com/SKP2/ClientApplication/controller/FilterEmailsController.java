@@ -38,27 +38,27 @@ public class FilterEmailsController implements ActionListener {
         jDialog.add(lblSubject);
 
         JTextField tfSubject = new JTextField();
-        tfSubject.setBounds(40, 130, 250, 30);
+        tfSubject.setBounds(40, 160, 250, 30);
         jDialog.add(tfSubject);
 
         JLabel lblStartDate = new JLabel("Start date");
-        lblStartDate.setBounds(40, 130, 250, 30);
+        lblStartDate.setBounds(40, 190, 250, 30);
         jDialog.add(lblStartDate);
 
         JTextField tfStartDate = new JTextField();
-        tfStartDate.setBounds(40, 160, 250, 30);
+        tfStartDate.setBounds(40, 220, 250, 30);
         jDialog.add(tfStartDate);
 
         JLabel lblEndDate = new JLabel("End date");
-        lblEndDate.setBounds(40, 190, 250, 30);
+        lblEndDate.setBounds(40, 250, 250, 30);
         jDialog.add(lblEndDate);
 
         JTextField tfEndDate = new JTextField();
-        tfEmail.setBounds(40, 220, 250, 30);
+        tfEmail.setBounds(40, 280, 250, 30);
         jDialog.add(tfEndDate);
 
         JButton btnFilter = new JButton("Filter");
-        btnFilter.setBounds(40, 250, 250, 30);
+        btnFilter.setBounds(40, 310, 250, 30);
         jDialog.add(btnFilter);
         btnFilter.addActionListener(e1 -> {
             List<EmailDto> list;
@@ -82,7 +82,7 @@ public class FilterEmailsController implements ActionListener {
             String[] header = {"Subject", "Context", "Email from", "Email to", "Date"};
 
             JTableImpl table = new JTableImpl(header, data);
-            table.setBounds(0, 280, 1024, 768);
+            table.setBounds(0, 340, 1024, 768);
 
             jDialog.add(new JScrollPane(table));
         });

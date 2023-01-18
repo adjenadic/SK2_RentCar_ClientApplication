@@ -16,21 +16,35 @@ public class ClientPanel extends JPanel {
         JMenu userService = new JMenu("User Service");
         menuBar.add(userService);
 
+        JMenuItem byClientId = new JMenuItem("Get By Client ID");
+        userService.add(byClientId);
+        byClientId.addActionListener(new ClientByIdController());
+
+        // TODO REGISTER CLIENT BUTTON
+
+        JMenuItem deleteClient = new JMenuItem("Delete Client");
+        userService.add(deleteClient);
+        deleteClient.addActionListener(new DeleteClientController());
+
+        JMenuItem updateClient = new JMenuItem("Update Client");
+        userService.add(updateClient);
+        updateClient.addActionListener(new UpdateClientController());
+
+        userService.addSeparator();
+
         JMenuItem verifyEmail = new JMenuItem("Verify Email");
         userService.add(verifyEmail);
         verifyEmail.addActionListener(new VerificationEmailController());
 
+        userService.addSeparator();
+
+        JMenuItem discount = new JMenuItem("Get Discount By ID");
+        userService.add(discount);
+        discount.addActionListener(new DiscountController());
+
         // Rental Service
         JMenu rentalService = new JMenu("Rental Service");
         menuBar.add(rentalService);
-
-        JMenuItem allCars = new JMenuItem("All Cars");
-        rentalService.add(allCars);
-        allCars.addActionListener(new AllCarsController());
-
-        JMenuItem byCarId = new JMenuItem("Get By Car ID");
-        rentalService.add(byCarId);
-        byCarId.addActionListener(new CarByIdController());
 
         JMenuItem sortASC = new JMenuItem("Sort Cars ASC");
         rentalService.add(sortASC);
@@ -46,27 +60,9 @@ public class ClientPanel extends JPanel {
 
         rentalService.addSeparator();
 
-        JMenuItem allCompanies = new JMenuItem("Get All Companies");
-        rentalService.add(allCompanies);
-        allCompanies.addActionListener(new AllCompaniesController());
-
-        JMenuItem byCompanyID = new JMenuItem("Get By Company ID");
-        rentalService.add(byCompanyID);
-        byCompanyID.addActionListener(new CompanyByIdController());
-
         JMenuItem sortCompaniesByRate = new JMenuItem("Sort Companies By Rate");
         rentalService.add(sortCompaniesByRate);
         sortCompaniesByRate.addActionListener(new SortCompaniesByRateController());
-
-        rentalService.addSeparator();
-
-        JMenuItem allModels = new JMenuItem("All Models");
-        rentalService.add(allModels);
-        allModels.addActionListener(new AllModelsController());
-
-        JMenuItem byModelID = new JMenuItem("Get By Model ID");
-        rentalService.add(byModelID);
-        byModelID.addActionListener(new ModelByIdController());
 
         rentalService.addSeparator();
 
@@ -96,15 +92,13 @@ public class ClientPanel extends JPanel {
         rentalService.add(addReview);
         addReview.addActionListener(new AddReviewController());
 
-        rentalService.addSeparator();
+        JMenuItem deleteReview = new JMenuItem("Delete Review");
+        rentalService.add(deleteReview);
+        deleteReview.addActionListener(new DeleteReviewController());
 
-        JMenuItem allTypes = new JMenuItem("All Types");
-        rentalService.add(allTypes);
-        allTypes.addActionListener(new AllTypesController());
-
-        JMenuItem byTypeID = new JMenuItem("Get By Type ID");
-        rentalService.add(byTypeID);
-        byTypeID.addActionListener(new TypeByIdController());
+        JMenuItem updateReview = new JMenuItem("Update Review");
+        rentalService.add(updateReview);
+        updateReview.addActionListener(new UpdateReviewController());
 
         // Notification Service
         JMenu notificationService = new JMenu("Notification Service");
@@ -117,15 +111,5 @@ public class ClientPanel extends JPanel {
         JMenuItem filterEmails = new JMenuItem("Filter Emails");
         notificationService.add(filterEmails);
         filterEmails.addActionListener(new FilterEmailsController());
-
-        notificationService.addSeparator();
-
-        JMenuItem allNotifTypes = new JMenuItem("All Notification Types");
-        notificationService.add(allNotifTypes);
-        allNotifTypes.addActionListener(new AllNotificationTypesController());
-
-        JMenuItem notifTypeByID = new JMenuItem("Notification Type By ID");
-        notificationService.add(notifTypeByID);
-        notifTypeByID.addActionListener(new NotifTypeByIdController());
     }
 }
