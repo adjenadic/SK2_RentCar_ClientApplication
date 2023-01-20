@@ -31,7 +31,7 @@ public class DeleteReviewController implements ActionListener {
         jDialog.add(btnDelete);
         btnDelete.addActionListener(event -> {
             try {
-                if (MainFrame.getInstance().getRentalService().deleteType(Long.parseLong(tfID.getText()))) {
+                if (MainFrame.getInstance().getRentalService().delete(Long.parseLong(tfID.getText()))) {
                     JOptionPane.showMessageDialog(null, "Review " + tfID.getText() + " successfully deleted.", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(null, "Review " + tfID.getText() + " has not been deleted due to an error.", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);

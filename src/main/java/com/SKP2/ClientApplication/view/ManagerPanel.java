@@ -1,4 +1,4 @@
-package com.SKP2.ClientApplication.view.manager;
+package com.SKP2.ClientApplication.view;
 
 import com.SKP2.ClientApplication.controller.*;
 
@@ -20,7 +20,9 @@ public class ManagerPanel extends JPanel {
         userService.add(byManagerId);
         byManagerId.addActionListener(new ManagerByIdController());
 
-        // TODO REGISTER MANAGER BUTTON
+        JMenuItem registerManager = new JMenuItem("Register Manager");
+        userService.add(registerManager);
+        registerManager.addActionListener(new RegisterManagerController());
 
         JMenuItem deleteManager = new JMenuItem("Delete Manager");
         userService.add(deleteManager);
@@ -54,11 +56,51 @@ public class ManagerPanel extends JPanel {
         rentalService.add(byCarId);
         byCarId.addActionListener(new CarByIdController());
 
+        JMenuItem registerCar = new JMenuItem("Register Car");
+        rentalService.add(registerCar);
+        registerCar.addActionListener(new RegisterCarController());
+
+        JMenuItem deleteCar = new JMenuItem("Delete Car");
+        rentalService.add(deleteCar);
+        deleteCar.addActionListener(new DeleteCarController());
+
+        JMenuItem updateCar = new JMenuItem("Update Car");
+        rentalService.add(updateCar);
+        updateCar.addActionListener(new UpdateCarController());
+
+        JMenuItem sortASC = new JMenuItem("Sort Cars ASC");
+        rentalService.add(sortASC);
+        sortASC.addActionListener(new SortASCController());
+
+        JMenuItem sortDESC = new JMenuItem("Sort Cars DESC");
+        rentalService.add(sortDESC);
+        sortDESC.addActionListener(new SortDESCController());
+
         JMenuItem filter = new JMenuItem("Filter");
         rentalService.add(filter);
         filter.addActionListener(new FilterController());
 
         rentalService.addSeparator();
+
+        JMenuItem allCompanies = new JMenuItem("All Companies");
+        rentalService.add(allCompanies);
+        allCompanies.addActionListener(new AllCompaniesController());
+
+        JMenuItem byCompanyId = new JMenuItem("Get By Company ID");
+        rentalService.add(byCompanyId);
+        byCompanyId.addActionListener(new CompanyByIdController());
+
+        JMenuItem registerCompany = new JMenuItem("Register Company");
+        rentalService.add(registerCompany);
+        registerCompany.addActionListener(new RegisterCompanyController());
+
+        JMenuItem deleteCompany = new JMenuItem("Delete Company");
+        rentalService.add(deleteCompany);
+        deleteCompany.addActionListener(new DeleteCompanyController());
+
+        JMenuItem updateCompany = new JMenuItem("Update Company");
+        rentalService.add(updateCompany);
+        updateCompany.addActionListener(new UpdateCompanyController());
 
         JMenuItem sortCompaniesByRate = new JMenuItem("Sort Companies By Rate");
         rentalService.add(sortCompaniesByRate);

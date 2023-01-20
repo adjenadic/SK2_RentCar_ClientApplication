@@ -101,14 +101,14 @@ public class RentalService {
     }
 
     public List<CarDto> filter(CarFilterDto carFilterDto) throws IOException {
-        RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(carFilterDto));
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(carFilterDto));
         String token = MainFrame.getInstance().getToken();
 
         Request request = new Request.Builder()
                 .url(URL + "/rental/car/search")
                 .addHeader("authorization", "Bearer " + token)
-                .post(body)
+                .put(body)
                 .build();
         Call call = client.newCall(request);
         Response response = call.execute();
@@ -483,12 +483,13 @@ public class RentalService {
 
     public List<ReviewDto> filterReview(ReviewFilterDto reviewFilterDto) throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(reviewFilterDto));
         String token = MainFrame.getInstance().getToken();
 
         Request request = new Request.Builder()
                 .url(URL + "/rental/review/filterReview")
                 .addHeader("authorization", "Bearer " + token)
-                .get()
+                .put(body)
                 .build();
         Call call = client.newCall(request);
         Response response = call.execute();

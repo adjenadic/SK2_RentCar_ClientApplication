@@ -51,6 +51,9 @@ public class FilterReviewController implements ActionListener {
                 ex.printStackTrace();
                 throw new RuntimeException(ex);
             }
+            JDialog internalJDialog = new JDialog();
+            internalJDialog.setSize(1024, 768);
+
             Object[][] data = new Object[50][50];
             int k = 0;
             for (ReviewDto dto : list)
@@ -60,7 +63,8 @@ public class FilterReviewController implements ActionListener {
             JTableImpl table = new JTableImpl(header, data);
             table.setBounds(0, 220, 1024, 768);
 
-            jDialog.add(new JScrollPane(table));
+            internalJDialog.add(new JScrollPane(table));
+            internalJDialog.setVisible(true);
         });
 
         jDialog.setVisible(true);

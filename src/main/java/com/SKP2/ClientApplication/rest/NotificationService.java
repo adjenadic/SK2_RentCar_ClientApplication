@@ -49,7 +49,7 @@ public class NotificationService {
         Request request = new Request.Builder()
                 .url(URL + "/notifications/email/filter")
                 .addHeader("authorization", "Bearer " + token)
-                .get()
+                .put(body)
                 .build();
         Call call = client.newCall(request);
         Response response = call.execute();

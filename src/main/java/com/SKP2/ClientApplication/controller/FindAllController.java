@@ -14,7 +14,6 @@ public class FindAllController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
-        jDialog.setLayout(null);
         jDialog.setSize(1024, 768);
 
         List<ReviewDto> list;

@@ -34,7 +34,7 @@ public class CompanyByIdController implements ActionListener {
             try {
                 CompanyDto companyDto = MainFrame.getInstance().getRentalService().getCompanyById(Long.parseLong(tfCompanyID.getText()));
                 JOptionPane.showMessageDialog(null, "ID: " + companyDto.getId() + "\nCompany name: " + companyDto.getName() + "\nDescription: " + companyDto.getDescription()
-                        + "\nNum of Cars: " + companyDto.getNumOfCars() + "\nCity: " + companyDto.getCity() + "\nCar List: " + companyDto.getCarList(), "Company " + tfCompanyID.getText(), JOptionPane.INFORMATION_MESSAGE);
+                        + "\nNum of Cars: " + companyDto.getNumOfCars() + "\nCity: " + companyDto.getCity() + "\nCar List: " + companyDto.getCarList().size(), "Company " + tfCompanyID.getText(), JOptionPane.INFORMATION_MESSAGE);
 
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "An error has occurred!", "Error", JOptionPane.ERROR_MESSAGE);

@@ -31,7 +31,7 @@ public class VerificationEmailManagerController implements ActionListener {
         jDialog.add(btnVerify);
         btnVerify.addActionListener(event -> {
             try {
-                if (MainFrame.getInstance().getUserService().verificationEmail(tfVerification.getText())) {
+                if (MainFrame.getInstance().getUserService().verificationEmailManager(tfVerification.getText())) {
                     JOptionPane.showMessageDialog(null, "Manager " + tfVerification.getText() + " successfully verified.", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(null, "Manager " + tfVerification.getText() + " has not been verified due to an error.", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);

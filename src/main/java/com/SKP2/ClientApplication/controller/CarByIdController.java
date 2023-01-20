@@ -34,8 +34,7 @@ public class CarByIdController implements ActionListener {
             try {
                 CarDto carDto = MainFrame.getInstance().getRentalService().getCarById(Long.parseLong(tfCarID.getText()));
                 JOptionPane.showMessageDialog(null, "ID: " + carDto.getId() + "\nModel Name: " + carDto.getModelName() + "\nType Name: " + carDto.getTypeName()
-                        + "\nCompany Name: " + carDto.getCompanyName() + "\nRental Day Price: " + carDto.getRentalDayPrice() + "\nReserved Status: " + carDto.isReserved()
-                        + "\nStart Date: " + carDto.getStartDate() + "\nEnd Date: " + carDto.getEndDate(), "Car " + tfCarID.getText(), JOptionPane.INFORMATION_MESSAGE);
+                        + "\nCompany Name: " + carDto.getCompanyName() + "\nRental Day Price: " + carDto.getRentalDayPrice(), "Car " + tfCarID.getText(), JOptionPane.INFORMATION_MESSAGE);
 
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "An error has occurred!", "Error", JOptionPane.ERROR_MESSAGE);

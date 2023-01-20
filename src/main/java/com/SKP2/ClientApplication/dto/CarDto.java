@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Date;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,7 +15,7 @@ public class CarDto {
     private String typeName;
     private String companyName;
     private Integer rentalDayPrice;
-    private boolean reserved;
-    private Date startDate;
-    private Date endDate;
+//    private boolean reserved;
+//    private Date startDate;
+//    private Date endDate;
 }

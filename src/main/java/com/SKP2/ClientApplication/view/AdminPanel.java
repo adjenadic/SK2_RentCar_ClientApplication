@@ -1,4 +1,4 @@
-package com.SKP2.ClientApplication.view.admin;
+package com.SKP2.ClientApplication.view;
 
 import com.SKP2.ClientApplication.controller.*;
 
@@ -24,7 +24,9 @@ public class AdminPanel extends JPanel {
         userService.add(byClientId);
         byClientId.addActionListener(new ClientByIdController());
 
-        // TODO REGISTER CLIENT BUTTON
+        JMenuItem registerClient = new JMenuItem("Register Client");
+        userService.add(registerClient);
+        registerClient.addActionListener(new RegisterClientController());
 
         JMenuItem updateClient = new JMenuItem("Update Client");
         userService.add(updateClient);
@@ -44,7 +46,9 @@ public class AdminPanel extends JPanel {
         userService.add(byManagerId);
         byManagerId.addActionListener(new ManagerByIdController());
 
-        // TODO REGISTER MANAGER BUTTON
+        JMenuItem registerManager = new JMenuItem("Register Manager");
+        userService.add(registerManager);
+        registerManager.addActionListener(new RegisterManagerController());
 
         JMenuItem deleteManager = new JMenuItem("Delete Manager");
         userService.add(deleteManager);
@@ -89,6 +93,14 @@ public class AdminPanel extends JPanel {
         JMenuItem filter = new JMenuItem("Filter");
         rentalService.add(filter);
         filter.addActionListener(new FilterController());
+
+        JMenuItem sortASC = new JMenuItem("Sort Cars ASC");
+        rentalService.add(sortASC);
+        sortASC.addActionListener(new SortASCController());
+
+        JMenuItem sortDESC = new JMenuItem("Sort Cars DESC");
+        rentalService.add(sortDESC);
+        sortDESC.addActionListener(new SortDESCController());
 
         rentalService.addSeparator();
 

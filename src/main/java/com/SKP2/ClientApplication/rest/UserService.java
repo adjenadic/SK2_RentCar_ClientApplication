@@ -350,10 +350,12 @@ public class UserService {
     }
 
     public RankDto addRank(RankCreateDto rankCreateDto) throws IOException {
+        String token = MainFrame.getInstance().getToken();
         RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(rankCreateDto));
 
         Request request = new Request.Builder()
                 .url(URL + "/users/admin/setRank")
+                .addHeader("authorization", "Bearer " + token)
                 .post(body)
                 .build();
         Call call = client.newCall(request);

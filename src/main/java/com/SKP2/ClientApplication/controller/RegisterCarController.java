@@ -60,8 +60,7 @@ public class RegisterCarController implements ActionListener {
                 CarCreateDto carDto = new CarCreateDto(Long.parseLong(tfModelID.getText()), Long.parseLong(tfTypeID.getText()), Long.parseLong(tfCompanyID.getText()), Integer.parseInt(tfRentalDayPrice.getText()));
                 CarDto updatedCarDto = MainFrame.getInstance().getRentalService().registerCar(carDto);
                 JOptionPane.showMessageDialog(null, "Car successfully registered.\nID: " + updatedCarDto.getId() + "\nModel name: " + updatedCarDto.getModelName() + "\nType name: " + updatedCarDto.getTypeName()
-                        + "\nCompany name: " + updatedCarDto.getCompanyName() + "\nRental day price: " + updatedCarDto.getRentalDayPrice() + "\nReserved: " + updatedCarDto.isReserved() + "\nStart date: " + updatedCarDto.getStartDate()
-                        + "\nEnd date: " + updatedCarDto.getEndDate(), "Operation successful", JOptionPane.INFORMATION_MESSAGE);
+                        + "\nCompany name: " + updatedCarDto.getCompanyName() + "\nRental day price: " + updatedCarDto.getRentalDayPrice(), "Operation successful", JOptionPane.INFORMATION_MESSAGE);
 
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Car not registered!", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);

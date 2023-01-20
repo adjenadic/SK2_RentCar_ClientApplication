@@ -14,18 +14,23 @@ public class LoginPanel extends JPanel {
 
         JLabel lblUsername = new JLabel("Username:");
         lblUsername.setBounds(40, 40, 250, 30);
+        add(lblUsername);
 
         JTextField tfUsername = new JTextField();
         tfUsername.setBounds(40, 70, 250, 30);
+        add(tfUsername);
 
         JLabel lblPassword = new JLabel("Password:");
         lblPassword.setBounds(40, 100, 250, 30);
+        add(lblPassword);
 
         JTextField tfPassword = new JTextField();
         tfPassword.setBounds(40, 130, 250, 30);
+        add(tfPassword);
 
         JButton btnLogin = new JButton("Login");
         btnLogin.setBounds(40, 160, 250, 30);
+        add(btnLogin);
         btnLogin.addActionListener(e -> {
             TokenRequestDto tokenRequestDto = new TokenRequestDto(tfUsername.getText(), tfPassword.getText());
             try {
@@ -52,22 +57,5 @@ public class LoginPanel extends JPanel {
                 JOptionPane.showMessageDialog(null, "Invalid credentials or blocked account.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
-
-        JButton btnRegisterClient = new JButton("Register Client");
-        btnRegisterClient.setBounds(40, 190, 250, 30);
-        btnRegisterClient.addActionListener(e -> MainFrame.getInstance().showRegisterClientPanel());
-
-        JButton btnRegisterManager = new JButton("Register Manager");
-        btnRegisterManager.setBounds(40, 220, 250, 30);
-        btnRegisterManager.addActionListener(e -> MainFrame.getInstance().showRegisterManagerPanel());
-
-        add(lblUsername);
-        add(tfUsername);
-        add(lblPassword);
-        add(tfPassword);
-        add(new JLabel());
-        add(btnLogin);
-        add(btnRegisterClient);
-        add(btnRegisterManager);
     }
 }

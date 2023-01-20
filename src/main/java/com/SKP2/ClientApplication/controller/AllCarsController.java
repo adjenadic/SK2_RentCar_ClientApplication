@@ -27,9 +27,8 @@ public class AllCarsController implements ActionListener {
         int k = 0;
         for (CarDto dto : list)
             data[k++] = new Object[]{dto.getId(), dto.getModelName(), dto.getTypeName(), dto.getCompanyName(),
-                    dto.getRentalDayPrice(), dto.isReserved(), dto.getStartDate(), dto.getEndDate()};
-        String[] header = {"ID", "Model Name", "Type Name", "Company Name", "Rental Day Price", "Reserved Status",
-                "Start Date", "End Date"};
+                    dto.getRentalDayPrice()};
+        String[] header = {"ID", "Model Name", "Type Name", "Company Name", "Rental Day Price"};
 
         JTableImpl table = new JTableImpl(header, data);
         table.setBounds(0, 0, 1024, 768);

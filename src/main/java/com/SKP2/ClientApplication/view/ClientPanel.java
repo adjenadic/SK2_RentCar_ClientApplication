@@ -1,4 +1,4 @@
-package com.SKP2.ClientApplication.view.client;
+package com.SKP2.ClientApplication.view;
 
 import com.SKP2.ClientApplication.controller.*;
 
@@ -15,12 +15,6 @@ public class ClientPanel extends JPanel {
         // User Service
         JMenu userService = new JMenu("User Service");
         menuBar.add(userService);
-
-        JMenuItem byClientId = new JMenuItem("Get By Client ID");
-        userService.add(byClientId);
-        byClientId.addActionListener(new ClientByIdController());
-
-        // TODO REGISTER CLIENT BUTTON
 
         JMenuItem deleteClient = new JMenuItem("Delete Client");
         userService.add(deleteClient);

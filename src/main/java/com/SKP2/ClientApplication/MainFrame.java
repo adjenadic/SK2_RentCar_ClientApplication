@@ -6,11 +6,9 @@ import com.SKP2.ClientApplication.rest.RentalService;
 import com.SKP2.ClientApplication.rest.UserService;
 import com.SKP2.ClientApplication.token.TokenDecoder;
 import com.SKP2.ClientApplication.view.LoginPanel;
-import com.SKP2.ClientApplication.view.admin.AdminPanel;
-import com.SKP2.ClientApplication.view.client.ClientPanel;
-import com.SKP2.ClientApplication.view.client.RegisterClientPanel;
-import com.SKP2.ClientApplication.view.manager.ManagerPanel;
-import com.SKP2.ClientApplication.view.manager.RegisterManagerPanel;
+import com.SKP2.ClientApplication.view.AdminPanel;
+import com.SKP2.ClientApplication.view.ClientPanel;
+import com.SKP2.ClientApplication.view.ManagerPanel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -47,8 +45,6 @@ public class MainFrame extends JFrame {
         rentalService = new RentalService();
         notificationService = new NotificationService();
 
-        registerManagerPanel = new RegisterManagerPanel();
-        registerClientPanel = new RegisterClientPanel();
         loginPanel = new LoginPanel();
         adminPanel = new AdminPanel();
         managerPanel = new ManagerPanel();
@@ -62,22 +58,6 @@ public class MainFrame extends JFrame {
             instance = new MainFrame();
         }
         return instance;
-    }
-
-    public void showRegisterManagerPanel() {
-        currentPanel = registerManagerPanel;
-        this.getContentPane().setVisible(false);
-        this.getContentPane().removeAll();
-        this.getContentPane().add(currentPanel);
-        this.getContentPane().setVisible(true);
-    }
-
-    public void showRegisterClientPanel() {
-        currentPanel = registerClientPanel;
-        this.getContentPane().setVisible(false);
-        this.getContentPane().removeAll();
-        this.getContentPane().add(currentPanel);
-        this.getContentPane().setVisible(true);
     }
 
     public void showLoginPanel() {
@@ -106,25 +86,6 @@ public class MainFrame extends JFrame {
 
     public void showClientPanel() {
         currentPanel = clientPanel;
-        this.getContentPane().setVisible(false);
-        this.getContentPane().removeAll();
-        this.getContentPane().add(currentPanel);
-        this.getContentPane().setVisible(true);
-    }
-
-    public void refresh() {
-        this.getContentPane().setVisible(false);
-        this.getContentPane().removeAll();
-        this.getContentPane().add(currentPanel);
-        this.getContentPane().setVisible(true);
-    }
-
-    public void clearContentPanel() {
-        currentPanel.removeAll();
-    }
-
-    public void clearContentPanelAndRefresh() {
-        currentPanel.removeAll();
         this.getContentPane().setVisible(false);
         this.getContentPane().removeAll();
         this.getContentPane().add(currentPanel);

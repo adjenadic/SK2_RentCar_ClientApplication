@@ -27,7 +27,7 @@ public class SortCompaniesByRateController implements ActionListener {
         int k = 0;
         for (CompanyDto dto : list)
             data[k++] = new Object[]{dto.getId(), dto.getName(), dto.getDescription(), dto.getNumOfCars(),
-                    dto.getCity(), dto.getCarList()};
+                    dto.getCity(), dto.getCarList().size()};
         String[] header = {"ID", "Name", "Description", "Num of Cars", "City", "Car List"};
 
         JTableImpl table = new JTableImpl(header, data);

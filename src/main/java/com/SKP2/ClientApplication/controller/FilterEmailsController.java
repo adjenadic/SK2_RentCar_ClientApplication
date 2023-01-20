@@ -54,7 +54,7 @@ public class FilterEmailsController implements ActionListener {
         jDialog.add(lblEndDate);
 
         JTextField tfEndDate = new JTextField();
-        tfEmail.setBounds(40, 280, 250, 30);
+        tfEndDate.setBounds(40, 280, 250, 30);
         jDialog.add(tfEndDate);
 
         JButton btnFilter = new JButton("Filter");
@@ -74,6 +74,9 @@ public class FilterEmailsController implements ActionListener {
                 ex.printStackTrace();
                 throw new RuntimeException(ex);
             }
+            JDialog internalJDialog = new JDialog();
+            internalJDialog.setSize(1024, 768);
+
             Object[][] data = new Object[50][50];
             int k = 0;
             for (EmailDto dto : list)
@@ -84,7 +87,8 @@ public class FilterEmailsController implements ActionListener {
             JTableImpl table = new JTableImpl(header, data);
             table.setBounds(0, 340, 1024, 768);
 
-            jDialog.add(new JScrollPane(table));
+            internalJDialog.add(new JScrollPane(table));
+            internalJDialog.setVisible(true);
         });
 
         jDialog.setVisible(true);
