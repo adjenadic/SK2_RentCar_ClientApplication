@@ -12,7 +12,7 @@ public class ForbidController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
         jDialog.setLayout(null);
-        jDialog.setSize(1024, 768);
+        jDialog.setSize(640, 240);
 
         JLabel lblBlock = new JLabel("Forbid a User Account");
         lblBlock.setBounds(40, 40, 250, 30);
@@ -36,7 +36,7 @@ public class ForbidController implements ActionListener {
                 } else {
                     JOptionPane.showMessageDialog(null, "Client " + tfUserID.getText() + " has not been blocked due to an error.", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
                 }
-                
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "User has not been blocked!", "Error", JOptionPane.ERROR_MESSAGE);
             }

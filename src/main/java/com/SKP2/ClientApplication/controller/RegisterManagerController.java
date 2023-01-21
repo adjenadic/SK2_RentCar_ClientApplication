@@ -110,7 +110,7 @@ public class RegisterManagerController implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Manager account not created!", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
             }
         });
-        
+
         jDialog.setVisible(true);
     }
 }

@@ -12,7 +12,7 @@ public class VerificationEmailManagerController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JDialog jDialog = new JDialog();
         jDialog.setLayout(null);
-        jDialog.setSize(1024, 768);
+        jDialog.setSize(640, 240);
 
         JLabel lblVerify = new JLabel("Verify Email");
         lblVerify.setBounds(40, 40, 250, 30);
@@ -32,9 +32,9 @@ public class VerificationEmailManagerController implements ActionListener {
         btnVerify.addActionListener(event -> {
             try {
                 if (MainFrame.getInstance().getUserService().verificationEmailManager(tfVerification.getText())) {
-                    JOptionPane.showMessageDialog(null, "Manager " + tfVerification.getText() + " successfully verified.", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Manager successfully verified.", "Operation successful", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Manager " + tfVerification.getText() + " has not been verified due to an error.", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Manager has not been verified due to an error.", "Operation unsuccessful", JOptionPane.ERROR_MESSAGE);
                 }
 
             } catch (IOException ex) {
